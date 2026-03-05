@@ -1,7 +1,7 @@
 import random
 from gpiozero import LED, Button
 import time
-from SimonSaysWithoutLEDs import *
+from SimonSays import *
 PUZZLES=["SIMON", "CODE","KEY"]
 
 class Puzzles():
@@ -18,14 +18,15 @@ class Puzzles():
     def simonSays(self):
         #checks if they got it correct
         passed=False
-        while passed==False:
+        broke=False
+        while passed==False and broke==False:
             #will create a new code each time even within the same puzzle if they get it wrong
             simon=SimonSays(self.__simonDifficulty)
-            passed=simon.sequence()
+            passed, broke=simon.sequence()
         
         #the puzzle gets harder the more they do
         self.__simonDifficulty+=1
-        return True
+        return passed
     
     #will call a code class?
     def code(self):
@@ -43,6 +44,9 @@ class Puzzles():
     def setPassedPuzzles(self, index):
         self.__passedPuzzles[index]=True
     
+    def checkCompleted(self,index):
+        return self.__passedPuzzles[index]
+        
     #checks if all the puzzles have been passed
     def completedPuzzles(self):
         for i in range(5):
@@ -57,16 +61,24 @@ puzzle=Puzzles()
 index=0
 
 #example of how going through each of the puzzles could work
-while puzzle.completedPuzzles()==False:
-    if puzzle.getPuzzles()[index]=="SIMON":    
-        puzzle.simonSays()
-        puzzle.setPassedPuzzles(index)
+while puzzle.completedPuzzles()==False and index<5:
+    #checks they haven't already completed that puzzle
+    if puzzle.checkCompleted(index)==False:
+        
+        #checks which puzzle it is for
+        if puzzle.getPuzzles()[index]=="SIMON":    
+            if puzzle.simonSays():
+                puzzle.setPassedPuzzles(index)
+            index+=1
+        elif puzzle.getPuzzles()[index]=="CODE":    
+            if puzzle.code():
+                puzzle.setPassedPuzzles(index)
+            index+=1
+        elif puzzle.getPuzzles()[index]=="KEY":    
+            if puzzle.key():
+                puzzle.setPassedPuzzles(index)
+            index+=1
+    else:
+        print("You have already completed that puzzle \n")
         index+=1
-    elif puzzle.getPuzzles()[index]=="CODE":    
-        print(puzzle.code())
-        puzzle.setPassedPuzzles(index)
-        index+=1
-    elif puzzle.getPuzzles()[index]=="KEY":    
-        puzzle.key()
-        puzzle.setPassedPuzzles(index)
-        index+=1
+
