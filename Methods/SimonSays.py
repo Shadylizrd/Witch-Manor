@@ -1,5 +1,5 @@
 import random
-import gpiozero import LED, Button
+from gpiozero import LED, Button
 import time
 #takes a difficulty which is how many colours will be in the sequence
 
@@ -29,22 +29,22 @@ class SimonSays(Puzzles):
         self.__currentDifficulty=0
         for i in range(difficulty):
             #makes a list of random colours the length of the difficulty
-            self.__answer.append(COLOURS[random.randint(0,4)])
-            
+            self.__answer.append(COLOURS[random.randint(0,3)])
+        self.sequence()    
             
     #checks if the user has entered the entire sequence correctly
     #recoursively calls itself until the entire sequence is done
     def sequence(self):
         self.__currentDifficulty+=1
         #runs the number of times that the difficulty is 1 to difficulty
-        showSequence()
+        self.showSequence()
         
-        if checkSequence():
+        if self.checkSequence():
             if self._difficulty==self.__currentDifficulty:
                 #returns true if the game has been won
                 return True
             else:
-                sequence()
+                self.sequence()
         else:
             return False
             
@@ -52,13 +52,13 @@ class SimonSays(Puzzles):
     #flashes the sequence for the player to copy
     def showSequence(self):
         for i in range(self.__currentDifficulty):
-            if answer[i]=="RED":
+            if self.__answer[i]=="RED":
                 self.__red.on()
-            elif answer[i]=="BLUE":
+            elif self.__answer[i]=="BLUE":
                 self.__blue.on()
-            elif answer[i]=="GREEN":
-                self.___green.on()
-            elif answer[i]=="YELLOW":
+            elif self.__answer[i]=="GREEN":
+                self.__green.on()
+            elif self.__answer[i]=="YELLOW":
                 self.__yellow.on()
             time.sleep(2)
             #makes sure all LEDs are off before showing the next LED
@@ -79,23 +79,23 @@ class SimonSays(Puzzles):
                 #checks if each button is pressed then if that was the button that was supposed to be pressed
                 if self.__redButton.is_pressed:
                     pressed=True
-                    if answer[i]!="RED":
+                    if self.__answer[i]!="RED":
                         #returns False if it was not the correct button
                         return False
                     
                 elif self.__blueButton.is_pressed:
                     pressed=True
-                    if answer[i]!="BLUE":
+                    if self.__answer[i]!="BLUE":
                         return False
                     
                 elif self.___greenButton.is_pressed:
                     pressed=True
-                    if answer[i]!="GREEN":
+                    if self.__answer[i]!="GREEN":
                         return False
                     
                 elif self.__yellowButton.is_pressed:
                     pressed=True
-                    if answer[i]!="YELLOW":
+                    if self.__answer[i]!="YELLOW":
                         return False
                     
         return True
