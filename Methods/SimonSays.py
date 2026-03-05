@@ -4,7 +4,7 @@ import time
 #takes a difficulty which is how many colours will be in the sequence
 
 COLOURS=["RED", "BLUE", "GREEN", "YELLOW"]
-class SimonSays(Puzzles):
+class SimonSays():
     
     def __init__(self,difficulty):
         #setting up the I/O
@@ -44,7 +44,8 @@ class SimonSays(Puzzles):
                 #returns true if the game has been won
                 return True
             else:
-                self.sequence()
+                passed=self.sequence()
+                return passed
         else:
             return False
             
