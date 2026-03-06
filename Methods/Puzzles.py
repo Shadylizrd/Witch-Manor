@@ -2,6 +2,7 @@ import random
 from gpiozero import LED, Button
 import time
 from SimonSays import *
+from codePuzzle import *
 PUZZLES=["SIMON", "CODE","KEY"]
 
 class Puzzles():
