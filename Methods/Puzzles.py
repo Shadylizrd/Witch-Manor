@@ -3,14 +3,14 @@ from gpiozero import LED, Button
 import time
 from SimonSays import *
 from codePuzzle import *
-PUZZLES=["SIMON", "CODE","KEY"]
+PUZZLES=["SIMON", "KEY"]
 
 class Puzzles():
     def __init__(self):
-        self.__puzzles=[]
+        self.__puzzles=["SIMON","SIMON",]
         self.__passedPuzzles=[False,False,False,False,False]
         self.__simonDifficulty=3
-        for i in range(5):
+        for i in range(3):
             #makes a list of random colours the length of the difficulty
             self.__puzzles.append(PUZZLES[random.randint(0,2)])
             print(self.__puzzles)
@@ -21,6 +21,7 @@ class Puzzles():
         passed=False
         broke=False
         while passed==False and broke==False:
+            #while in the puzzle state the interact key, if pressed will set broke to True
             #will create a new code each time even within the same puzzle if they get it wrong
             simon=SimonSays(self.__simonDifficulty)
             passed, broke=simon.sequence()
