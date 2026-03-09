@@ -7,6 +7,8 @@ COLOURS=["RED", "BLUE", "GREEN", "YELLOW"]
 class SimonSays():
     
     def __init__(self,difficulty):
+        
+        self.__type= "SIMON"
         #setting up the I/O
         
         #LEDs
@@ -31,7 +33,11 @@ class SimonSays():
         for i in range(difficulty):
             #makes a list of random colours the length of the difficulty
             self.__answer.append(COLOURS[random.randint(0,3)])
-            
+    
+    #returns the puzzle type
+    def getType(self):
+        return self.__type
+    
     #checks if the user has entered the entire sequence correctly
     #recoursively calls itself until the entire sequence is done
     def sequence(self):

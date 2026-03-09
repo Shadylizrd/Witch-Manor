@@ -3,7 +3,6 @@ from gpiozero import LED, Button
 import time
 from SimonSays import *
 from codePuzzle import *
-PUZZLES=["SIMON", "KEY"]
 
 class Puzzles():
     def __init__(self):
@@ -12,7 +11,7 @@ class Puzzles():
         self.__simonDifficulty=3
         for i in range(3):
             #makes a list of random colours the length of the difficulty
-            self.__puzzles.append(PUZZLES[random.randint(0,2)])
+            self.__puzzles.append(PUZZLES[random.randint(0,1)])
             print(self.__puzzles)
             
     def simonSays(self):
@@ -51,6 +50,21 @@ class Puzzles():
                 return False
         return True
 
+    #gets called when the player tries to complete a puzzle
+    def runPuzzle(self, currentPuzzle):
+        for i in range(len(self.__puzzles)):
+            if self.__puzzles[i]==currentPuzzle:
+                index=i
+        if puzzle.checkCompleted(index)==False:      
+            #checks which puzzle it is for
+            if currentPuzzle.getType()=="SIMON":    
+                if puzzle.simonSays():
+                    puzzle.setPassedPuzzles(index)
+            elif currentPuzzle.getType()=="KEY":    
+                if puzzle.key():
+                    puzzle.setPassedPuzzles(index)
+        else:
+            print("You have already completed that puzzle \n")
 
 puzzle=Puzzles()
 
@@ -66,12 +80,9 @@ while puzzle.completedPuzzles()==False and index<5:
         if puzzle.getPuzzles()[index]=="SIMON":    
             if puzzle.simonSays():
                 puzzle.setPassedPuzzles(index)
-            index+=1
         elif puzzle.getPuzzles()[index]=="KEY":    
             if puzzle.key():
                 puzzle.setPassedPuzzles(index)
-            index+=1
     else:
         print("You have already completed that puzzle \n")
-        index+=1
 
