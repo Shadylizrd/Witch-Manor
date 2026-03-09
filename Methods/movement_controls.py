@@ -1,40 +1,37 @@
+
 from gpiozero import Button
-from signal import pause
+import time
 
-# Switches
-up_pin = 23
-down_pin = 22
-left_pin = 27
-right_pin = 17
-interact_pin = 4
+class MovementControls:
+    def __init__(self):
+        # Buttons connected to teh pins
+        self.__up_button = Button(23)
+        self.__down_button = Button(22)
+        self.__left_button = Button(27)
+        self.__right_button = Button(17)
+        self.__interact_button = Button(4)
 
-#buttons
-up_button =Button(up_pin)
-down_button = Button(down_pin)
-left_button = Button(left_pin)
-right_button =Button(right_pin)
-interact_button=Button(interact_pin)
+    # continuously checks buttons and returns a string repressenting the action
+    def get_input(self):
+        while True:
 
-#Movement functions
-def move_up():
-    print("Move up")
+            # Checks if the switches are pressed and prevent button press being detected multiple times
+            if self.__up_button.is_pressed:
+                time.sleep(0.2) 
+                return "UP"
 
-def move_down():
-    print("Move down")
+            elif self.__down_button.is_pressed:
+                time.sleep(0.2)
+                return "DOWN"
 
-def move_left():
-    print("Move left")
+            elif self.__left_button.is_pressed:
+                time.sleep(0.2)
+                return "LEFT"
 
-def move_right():
-    print("Move right")
+            elif self.__right_button.is_pressed:
+                time.sleep(0.2)
+                return "RIGHT"
 
-def move_interact():
-    print("Interact")
-
-up_button.when_pressed =move_up
-down_button.when_pressed = move_down
-left_button.when_pressed = move_left
-right_button.when_pressed = move_right
-interact_button.when_pressed =move_interact
-
-pause()
+            elif self.__interact_button.is_pressed:
+                time.sleep(0.2)
+                return "INTERACT"
