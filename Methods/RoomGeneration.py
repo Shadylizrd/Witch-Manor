@@ -15,9 +15,9 @@ def checkJson(file):
     return data   
 
 
-def test():
+def readJson(file):
     try:
-        with open('PuzzleKeys.json', 'r') as file:
+        with open(file, 'r') as file:
             data = checkJson(file)
         print(data)
     except Exception as e:

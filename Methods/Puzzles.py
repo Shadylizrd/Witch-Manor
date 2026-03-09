@@ -15,7 +15,6 @@ class Puzzles():
             self.__puzzles.append(PUZZLES[random.randint(0,2)])
             print(self.__puzzles)
             
-            
     def simonSays(self):
         #checks if they got it correct
         passed=False
