@@ -28,10 +28,6 @@ class Puzzles():
         #the puzzle gets harder the more they do
         self.__simonDifficulty+=1
         return passed
-    
-    #will call a code class?
-    def code(self):
-        return True
        
     #will call a key class?
     def key(self):
@@ -69,10 +65,6 @@ while puzzle.completedPuzzles()==False and index<5:
         #checks which puzzle it is for
         if puzzle.getPuzzles()[index]=="SIMON":    
             if puzzle.simonSays():
-                puzzle.setPassedPuzzles(index)
-            index+=1
-        elif puzzle.getPuzzles()[index]=="CODE":    
-            if puzzle.code():
                 puzzle.setPassedPuzzles(index)
             index+=1
         elif puzzle.getPuzzles()[index]=="KEY":    

@@ -23,4 +23,4 @@ def readJson(file):
     except Exception as e:
         print("ERROR: file is missing?")
         print(e)
-test()
+readJson()
