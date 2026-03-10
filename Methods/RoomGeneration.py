@@ -15,25 +15,16 @@ def checkJson(file):
         print("ERROR: PuzzleKeys.json is no longer a valid json")
     return data   
 
-def readJson(file):
+def readJson(file, mainKey):
     try:
         with open(file, 'r') as file:
             data = checkJson(file)
-        return data
+        return data[mainKey] # returns the initial dictionary - every other call will only require data[index]['key'] 
     except Exception as e:
         print("ERROR: file is missing?")
         print(e)
         return None
 
-keyPuzzles = readJson("PuzzleKeys.json")
-simonDescriptions = readJson("SimonDescriptions.json")
-
-print(keyPuzzles.keys())
-
-print(simonDescriptions.keys())
-print(simonDescriptions['SimonRoomDescriptions'[0]])
-
-SimonRoomDescriptions = {
-    'Descriprion':'You enter a large room with fabric sprawled across every surface, you spy a safe tucked under countless layers of velvet. Do you try and crack the code?',
-
-}
+# figuring out how to scrape data from the json file!
+keys = readJson("PuzzleKeys.json", "trinkets")
+print(keys[0]['trinket'])
