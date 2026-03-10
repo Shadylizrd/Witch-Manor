@@ -2,6 +2,9 @@ import json
 import os
 #import Puzzles
 
+# PuzzleKeys.json fields:
+# 'trinket', 'trinketDescription', 'puzzleDescription', 'solvedDescription', 'correctTrinket', 'wrongTrinket'
+
 class CreateRoom :
     def __init__(self, puzzle):
         self.puzzle = puzzle
@@ -28,3 +31,5 @@ def readJson(file, mainKey):
 # figuring out how to scrape data from the json file!
 keys = readJson("PuzzleKeys.json", "trinkets")
 print(keys[0]['trinket'])
+print(keys[0]['puzzleDescription'])
+print(keys[1]['trinket'])
