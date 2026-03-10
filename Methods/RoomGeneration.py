@@ -1,5 +1,6 @@
 import json
 import os
+#import Puzzles
 
 class CreateRoom :
     def __init__(self, puzzle):
@@ -14,13 +15,25 @@ def checkJson(file):
         print("ERROR: PuzzleKeys.json is no longer a valid json")
     return data   
 
-
 def readJson(file):
     try:
         with open(file, 'r') as file:
             data = checkJson(file)
-        print(data)
+        return data
     except Exception as e:
         print("ERROR: file is missing?")
         print(e)
-readJson()
+        return None
+
+keyPuzzles = readJson("PuzzleKeys.json")
+simonDescriptions = readJson("SimonDescriptions.json")
+
+print(keyPuzzles.keys())
+
+print(simonDescriptions.keys())
+print(simonDescriptions['SimonRoomDescriptions'[0]])
+
+SimonRoomDescriptions = {
+    'Descriprion':'You enter a large room with fabric sprawled across every surface, you spy a safe tucked under countless layers of velvet. Do you try and crack the code?',
+
+}

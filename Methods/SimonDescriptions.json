@@ -1,9 +1,9 @@
 {
 "SimonRoomDescriptions":[
-    {"Descriprion":"You enter a large room with "},
-    {"Descriprion":""},
-    {"Descriprion":""},
-    {"Descriprion":""},
-    {"Descriprion":""}
+    {"Descriprion":"You enter a large room with fabric sprawled across every surface, you spy a safe tucked under countless layers of velvet. Do you try and crack the code?"},
+    {"Descriprion":"2"},
+    {"Descriprion":"3"},
+    {"Descriprion":"4"},
+    {"Descriprion":"5"}
 ]
 }
