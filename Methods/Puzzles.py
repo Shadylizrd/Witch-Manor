@@ -2,11 +2,8 @@ import random
 from gpiozero import LED, Button
 import time
 from SimonSays import *
-<<<<<<< Updated upstream
-from codePuzzle import *
-=======
+
 PUZZLES=["SIMON", "KEY"]
->>>>>>> Stashed changes
 
 class Puzzles():
     def __init__(self):
