@@ -1,7 +1,9 @@
 import json
 import os
 
-# PuzzleKeys.json fields:
+#
+
+#  KeyDescriptions.json fields:
 # 'trinket', 'trinketDescription', 'puzzleDescription', 'solvedDescription', 'correctTrinket', 'wrongTrinket'
 
 # checks the validity of the json file that lists all the trinkets for the puzzles
@@ -29,8 +31,8 @@ def readJson(f):
         return None
 
 # reminder on how to call the different values by the keys and array locations:
-# keys = readJson('PuzzleKeys.json')
+# keys = readJson('KeyDescriptions.json')
 # print(keys['trinkets'][0]['trinket']) --> 'Cracked Key'
-# print(keys['trinkets'][1]['trinket']) --> 'Cracked Key'
+# print(keys['trinkets'][1]['trinket']) --> 'Crystal Orb'
 
     
