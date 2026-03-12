@@ -2,10 +2,10 @@ import time
 import random
 from gpiozero import LED, Button
 
-blue = LED(17)
-green = LED(27)
-red = LED(22)
-button = Button(23)
+blue = LED(21)
+green = LED(20)
+red = LED(16)
+button = Button(17)
 
 TIME_LIMIT = 2  # seconds
 escaped = False
