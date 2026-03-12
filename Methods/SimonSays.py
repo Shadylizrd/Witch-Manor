@@ -8,24 +8,22 @@ class SimonSays():
     
     def __init__(self,difficulty):
         
-        self.__type= "SIMON"
         #setting up the I/O
-        
         #LEDs
-        self.__red="red"
-        self.__green="green"
-        self.__blue="blue"
-        self.__yellow="yellow"
+        self.__red=LED(21)
+        self.__green=LED(20)
+        self.__blue=LED(16)
+        self.__yellow=LED(12)
         #Buttons
         self.__redButton=Button(23)
         self.__greenButton=Button(22)
         self.__blueButton=Button(27)
         self.__yellowButton=Button(17)
-        self.__exitButton=Button(4)
-         
+        self.__exitButton=Button(4)         
         
         #setting up variables
         self.__answer=[]
+        self.__type= "SIMON"
         
         #put the difficulty in the Puzzles class
         self._difficulty=difficulty
@@ -37,6 +35,11 @@ class SimonSays():
     #returns the puzzle type
     def getType(self):
         return self.__type
+     #regenerates sequence when the player gets it wrong
+    def newAnswer(self):
+        self.__answer=[]
+        for i in range(self.__difficulty):
+            self.__answer.append(COLOURS[random.randint(0,3)])
     
     #checks if the user has entered the entire sequence correctly
     #recoursively calls itself until the entire sequence is done
@@ -62,13 +65,13 @@ class SimonSays():
     def showSequence(self):
         for i in range(self.__currentDifficulty):
             if self.__answer[i]=="RED":
-                print(self.__red)
+                self.__red.on()
             elif self.__answer[i]=="BLUE":
-                print(self.__blue)
+                self.__blue.on()
             elif self.__answer[i]=="GREEN":
-                print(self.__green)
+                self.__green.on()
             elif self.__answer[i]=="YELLOW":
-                print(self.__yellow)
+                self.__yellow.on()
             time.sleep(0)
             #makes sure all LEDs are off before showing the next LED
             self.__red.off()
