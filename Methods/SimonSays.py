@@ -35,9 +35,11 @@ class SimonSays():
     #returns the puzzle type
     def getType(self):
         return self.__type
-     #regenerates sequence when the player gets it wrong
+    
+    #regenerates sequence when the player gets it wrong
     def newAnswer(self):
         self.__answer=[]
+        self.__currentDifficulty=0
         for i in range(self.__difficulty):
             self.__answer.append(COLOURS[random.randint(0,3)])
     
@@ -47,18 +49,20 @@ class SimonSays():
         self.__currentDifficulty+=1
         #runs the number of times that the difficulty is 1 to difficulty
         self.showSequence()
-        correct, broke=self.checkSequence()
+        correct, toBreak=self.checkSequence()
         if correct:
             if self._difficulty==self.__currentDifficulty:
                 #returns true if the game has been won
-                return True, False
+                return True
             else:
                 passed=self.sequence()
                 return passed
-        elif broke==True:
-            return False, True
+        elif toBreak==True:
+            return False
         else:
-            return False, False
+            self.newAnswer()
+            passed=self.sequence()
+            return passed
             
             
     #flashes the sequence for the player to copy
@@ -78,10 +82,12 @@ class SimonSays():
             self.__green.off()
             self.__blue.off()
             self.__yellow.off()
-    
+
+
     #checks the user input against the sequence returns False if it isn't the same
     def checkSequence(self):
         toBreak=False
+        correct=True
         #loops for each LED in sequence
         for i in range(self.__currentDifficulty):
             pressed=False
@@ -93,28 +99,28 @@ class SimonSays():
                     pressed=True
                     if self.__answer[i]!="RED":
                         #returns False if it was not the correct button
-                        return False, False
+                        return False, toBreak
                     
                 elif self.__blueButton.is_pressed:
                     pressed=True
                     if self.__answer[i]!="BLUE":
-                        return False, False
+                        return False, toBreak
                     
                 elif self.___greenButton.is_pressed:
                     pressed=True
                     if self.__answer[i]!="GREEN":
-                        return False, False
+                        return False, toBreak
                     
                 elif self.__yellowButton.is_pressed:
                     pressed=True
                     if self.__answer[i]!="YELLOW":
-                        return False, False
+                        return False, toBreak
                     
                 elif self.__exitButton.is_pressed:
                     return False, True
                     
                     
-        return True, False
+        return correct, toBreak
                 
         
         
