@@ -54,13 +54,13 @@ class Puzzles():
         for i in range(len(self.__puzzles)):
             if self.__puzzles[i]==currentPuzzle:
                 index=i     
-        #checks which puzzle it is for
-        if currentPuzzle.getType()=="SIMON":    
-            if puzzle.simonSays():
-                puzzle.setPassedPuzzles(index)
-        elif currentPuzzle.getType()=="KEY":    
-            if puzzle.key():
-                puzzle.setPassedPuzzles(index)
+            #checks which puzzle it is for
+            if currentPuzzle.getType()=="SIMON":    
+                if self.simonSays():
+                    self.setPassedPuzzles(index)
+            elif currentPuzzle.getType()=="KEY":    
+                if self.key():
+                    self.setPassedPuzzles(index)
 
 
 
