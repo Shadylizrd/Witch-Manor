@@ -12,6 +12,7 @@
     {
     "trinket":"Crystal Orb",
     "trinketDescription":"",
+    "takenDescription":"",
     "puzzleDescription":"",
     "solvedDescription":"",
     "correctTrinket":"",
@@ -20,6 +21,7 @@
     {
     "trinket":"Witches Hat",
     "trinketDescription":"",
+    "takenDescription":"",
     "puzzleDescription":"",
     "solvedDescription":"",
     "correctTrinket":"",
@@ -28,6 +30,7 @@
     {
     "trinket":"Salt Lamp",
     "trinketDescription":"",
+    "takenDescription":"",
     "puzzleDescription":"",
     "solvedDescription":"",
     "correctTrinket":"",
@@ -36,6 +39,7 @@
     {
     "trinket":"Eye of Newt",
     "trinketDescription":"",
+    "takenDescription":"",
     "puzzleDescription":"",
     "solvedDescription":"",
     "correctTrinket":"",
