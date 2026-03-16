@@ -1,10 +1,12 @@
 from ReadJson import *
+from gpiozero import LED, Button
 import random
 
 class KeyPuzzle():
     def __init__(self, trinketIndex, puzzleRoom):
 
         # buttons
+        self.__interact = Button(4)  
   
         # will take a random digit from 0-4, generated along with the rest of the puzzles
         # these numbers need to be generated at the same time so puzzles don't repeat
