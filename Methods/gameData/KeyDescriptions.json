@@ -2,10 +2,11 @@
 "trinkets" : [
     {
     "trinket":"Cracked Key",
-    "trinketDescription":"You enter a small room filled with books and relics of old, a Cracked Key lays strewn accross a long forgotten writing desk... maybe this could be of use somewhere...?",
-    "puzzleDescription":"You enter what looks to be bedroom, weathered by time. You spot a crooked chest of drawers lingering to the right of you, one of the drawers emits a strange energy. The drawer is locked... maybe you could find a key somewhere?",
-    "solvedDescription":"You enter the old bedroom, the drawer hangs open. There's no more you can gain here.",
-    "correctTrinket":"You use the cracked key. After some fumbling with the lock, the drawer slides open!",
+    "trinketDescription":"You enter a small room filled with books and relics of old \nA Cracked Key lays strewn accross a long forgotten writing desk... \nmaybe this could be of use somewhere...?",
+    "takenDescription":"You enter the small room once more, still filled with books and relics of old. \nThe writing desk lays empty now \nThere is no more you can do here",
+    "puzzleDescription":"You enter what looks to be bedroom, weathered by time. \nYou spot a crooked chest of drawers lingering to the right of you, \none of the drawers emits a strange energy. \nThe drawer is locked... maybe you could find a key somewhere?",
+    "solvedDescription":"You enter the old bedroom, the drawer hangs open. \nThere's no more you can gain here.",
+    "correctTrinket":"You use the cracked key. \nAfter some fumbling with the lock, the drawer slides open!",
     "wrongTrinket":"no... that doesn't seem right..."
     },
     {

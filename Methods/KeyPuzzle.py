@@ -3,7 +3,7 @@ from gpiozero import LED, Button
 import random
 
 class KeyPuzzle():
-    def __init__(self, trinketIndex):
+    def __init__(self, trinketIndex, puzzleRoom):
 
         # buttons
         self.__left = Button(23)
@@ -26,6 +26,9 @@ class KeyPuzzle():
         self.__correctTrinket = self.__keyDict['correctTrinket']
         self.__wrongTrinket = self.__keyDict['wrongTrinket']
 
+        # extra attributes for state of room
+        # puzzleRoom checks whether the room conatins the puzzle or the key
+        self.__puzzleRoom = puzzleRoom
         self.__solved = False 
 
     # returns the main trinket
@@ -41,14 +44,17 @@ class KeyPuzzle():
             return self.__wrongTrinket
     
     def enterRoom(self):
-        if self.__solved == False:
-            print(self.__puzzleDescription)
-            if self.__interact.is_pressed:
-                # should be something like trinket = openInventory() --> returns a trinket
-                trinket = input("Which item would you like to use?")
-                self.giveTrinket(trinket)
+        if self.__puzzleRoom:
+            if not self.__solved:
+                print(self.__puzzleDescription)
+                if self.__interact.is_pressed:
+                    # should be something like trinket = openInventory() --> returns a trinket
+                    trinket = input("Which item would you like to use?")
+                    self.giveTrinket(trinket)
+            else:
+                print(self.__solvedDescription)
         else:
-            print(self.__solvedDescription)
+            
 
         
 
