@@ -11,18 +11,18 @@ def checkJson(file):
     try:
         data = json.load(file)
     except:
-        print("ERROR: PuzzleKeys.json is no longer a valid json")
+        print(f"ERROR: {file} is no longer a valid json")
         return None
     return data   
 
-def readJson(f):
+def readJson(json, mainKey):
     try:
         dirname = os.path.dirname(__file__)
-        filename = os.path.join(dirname, 'GameData/', f)
+        filename = os.path.join(dirname, 'GameData/', json)
         with open(filename, 'r') as file:
-            data = checkJson(file)
+            data = checkJson(file)[mainKey]
             # I store the data in the json file as an array so this'll make it easier to access data straight away
-            # Returns the initial dictionary - every other call will only require data[index]['key'] 
+            # Returns the initial dictionary - every other call will only require data[index]['key']
             return data
         
     except Exception as e:
@@ -30,9 +30,7 @@ def readJson(f):
         print(e)
         return None
 
-# reminder on how to call the different values by the keys and array locations:
-# keys = readJson('KeyDescriptions.json')
-# print(keys['trinkets'][0]['trinket']) --> 'Cracked Key'
-# print(keys['trinkets'][1]['trinket']) --> 'Crystal Orb'
-
-    
+#reminder on how to call the different values by the keys and array locations:
+#keys = readJson('KeyDescriptions.json', 'trinkets')
+#print(keys['trinkets'][0]['trinket']) --> 'Cracked Key'
+#print(keys['trinkets'][1]['trinket']) --> 'Crystal Orb'
