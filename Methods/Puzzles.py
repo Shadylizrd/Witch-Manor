@@ -53,17 +53,15 @@ class Puzzles():
     def runPuzzle(self, currentPuzzle):
         for i in range(len(self.__puzzles)):
             if self.__puzzles[i]==currentPuzzle:
-                index=i
-        if puzzle.checkCompleted(index)==False:      
-            #checks which puzzle it is for
-            if currentPuzzle.getType()=="SIMON":    
-                if puzzle.simonSays():
-                    puzzle.setPassedPuzzles(index)
-            elif currentPuzzle.getType()=="KEY":    
-                if puzzle.key():
-                    puzzle.setPassedPuzzles(index)
-        else:
-            print("You have already completed that puzzle \n")
+                index=i     
+        #checks which puzzle it is for
+        if currentPuzzle.getType()=="SIMON":    
+            if puzzle.simonSays():
+                puzzle.setPassedPuzzles(index)
+        elif currentPuzzle.getType()=="KEY":    
+            if puzzle.key():
+                puzzle.setPassedPuzzles(index)
+
 
 
 puzzle=Puzzles()
