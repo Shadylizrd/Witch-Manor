@@ -6,8 +6,11 @@ class KeyPuzzle():
     def __init__(self, trinketIndex, puzzleRoom):
 
         # buttons
-        self.__interact = Button(4)  
-  
+        self.__interact = Button(4)
+        
+        #The type of puzzle so the Puzzles class can tell
+        self.__type="KEY"
+        
         # will take a random digit from 0-4, generated along with the rest of the puzzles
         # these numbers need to be generated at the same time so puzzles don't repeat
         self.__trinketIndex = trinketIndex
@@ -34,8 +37,10 @@ class KeyPuzzle():
         if trinket == self.__trinket:
             self.__solved = True
             print(self.__correctTrinket)
+            return True
         else:
             print(self.__wrongTrinket)
+            return False
     
     def enterRoom(self):
         if self.__puzzleRoom:
@@ -57,6 +62,9 @@ class KeyPuzzle():
                     self.__taken = True
             else:
                 print(self.__takenDescription)
+    
+    def getType(self):
+        return self.__type
 
         
 # inventory method or something
