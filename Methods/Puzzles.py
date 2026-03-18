@@ -7,23 +7,30 @@ PUZZLES=["SIMON", "KEY"]
 
 class Puzzles():
     def __init__(self):
-        #change to save objects
-        self.__puzzles=[SimonSays(3),SimonSays(4)]
+        #generates an array of 5 different unique numbers
+        numbers=[]
+        while len(numbers)<5:
+            num=random.randint(0,4)
+            if num not in numbers:
+                numbers.append(num)
+        print(numbers)
+        
+        self.__puzzles=[[SimonSays(3),numbers[0]],[SimonSays(4),numbers[1]]]
         self.__passedPuzzles=[False,False,False,False,False]
         self.__simonDifficulty=5
-        for i in range(3):
+        for i in range(2,5):
             #makes a list of random colours the length of the difficulty
             if random.randint(0,1)==0:
-                self.__puzzles.append("KEY")
+                self.__puzzles.append(["KEY",numbers[i]])
             else:
-                self.__puzzles.append(SimonSays(self.__simonDifficulty))
+                self.__puzzles.append([SimonSays(self.__simonDifficulty),numbers[i]])
                 self.__simonDifficulty+=1
         print(self.__puzzles)
            
            
     def simonSays(self):
         #checks if they got it correct
-        passed=self.__puzzles[index].sequence()
+        passed=self.__puzzles[index][0].sequence()
         return passed
        
     #will call a key class
@@ -52,7 +59,7 @@ class Puzzles():
     #gets called when the player tries to complete a puzzle
     def runPuzzle(self, currentPuzzle):
         for i in range(len(self.__puzzles)):
-            if self.__puzzles[i]==currentPuzzle:
+            if self.__puzzles[i][0]==currentPuzzle:
                 index=i     
             #checks which puzzle it is for
             if currentPuzzle.getType()=="SIMON":    
@@ -71,10 +78,10 @@ index=0
 #example of how going through each of the puzzles could work
 while puzzle.completedPuzzles()==False and index<5:
     #checks they haven't already completed that puzzle
-    currentPuzzle=puzzle.getPuzzles()[index]
+    currentPuzzle=puzzle.getPuzzles()[index][0]
     #figures out puzzle index
     for i in range(len(puzzle.getPuzzles())):
-            if puzzle.getPuzzles()[i]==currentPuzzle:
+            if puzzle.getPuzzles()[i][0]==currentPuzzle:
                 index=i
                 if puzzle.checkCompleted(index)==False:
                     #checks which puzzle it is for
