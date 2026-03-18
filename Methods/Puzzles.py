@@ -72,6 +72,7 @@ index=0
 while puzzle.completedPuzzles()==False and index<5:
     #checks they haven't already completed that puzzle
     currentPuzzle=puzzle.getPuzzles()[index]
+    #figures out puzzle index
     for i in range(len(puzzle.getPuzzles())):
             if puzzle.getPuzzles()[i]==currentPuzzle:
                 index=i
