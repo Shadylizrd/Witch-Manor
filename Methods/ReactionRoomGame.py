@@ -2,56 +2,70 @@ import time
 import random
 from gpiozero import LED, Button
 
-blue = LED(21)
-green = LED(20)
-red = LED(16)
-button = Button(17)
 
-TIME_LIMIT = 2  # seconds
-escaped = False
+class ReactionGame:
+    def __init__(self, timeLimit=2):
+        # LEDs
+        self.__blue = LED(21)
+        self.__green = LED(20)
+        self.__red = LED(16)
 
-try:
-    while not escaped:
+        # Button
+        self.__button = Button(17)
 
-        blue.off()
-        green.off()
-        red.off()
+        # Game settings
+        self.__timeLimit = timeLimit
+        self.__type = "REACTION"
 
-        print("Ready...")
-        time.sleep(random.randint(1, 5))
+    # so Puzzles.py can identify it
+    def getType(self):
+        return self.__type
 
-        print("Now!")
-        blue.on()
+    # main game logic
+    def sequence(self):
+        try:
+            while True:
+                # reset LEDs
+                self.__blue.off()
+                self.__green.off()
+                self.__red.off()
 
-        start = time.time()
+                print("Ready...")
+                time.sleep(random.randint(1, 5))
 
-        button.wait_for_press()
+                print("Now!")
+                self.__blue.on()
 
-        end = time.time()
-        reaction = end - start
+                start = time.time()
 
-        blue.off()
+                self.__button.wait_for_press()
 
-        print("You reacted in", reaction, "seconds")
+                end = time.time()
+                reaction = end - start
 
-        if reaction <= TIME_LIMIT:
-            print("Success! You escaped the room.")
+                self.__blue.off()
 
-            green.on()
-            time.sleep(3)
-            green.off()
+                print("You reacted in", reaction, "seconds")
 
-            escaped = True   # stops the loop
+                if reaction <= self.__timeLimit:
+                    print("Success! You escaped the room.")
 
-        else:
-            print("Too slow! Try again.")
+                    self.__green.on()
+                    time.sleep(2)
+                    self.__green.off()
 
-            red.on()
-            time.sleep(3)
-            red.off()
+                    return True   # puzzle solved
 
-except KeyboardInterrupt:
-    print("Game stopped")
-    blue.off()
-    green.off()
-    red.off()
+                else:
+                    print("Too slow! Try again.")
+
+                    self.__red.on()
+                    time.sleep(2)
+                    self.__red.off()
+
+        except KeyboardInterrupt:
+            print("Game stopped")
+            self.__blue.off()
+            self.__green.off()
+            self.__red.off()
+            return False
