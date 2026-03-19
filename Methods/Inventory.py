@@ -1,5 +1,5 @@
 from KeyPuzzle import *
-0
+
 class Inventory():
     def __init__(self):
         self.__inventory = []
@@ -31,7 +31,6 @@ class Inventory():
             return
         return popped
 
-    
     def printInventory(self):
         print(" -- Your Inventory -- ")
         for i in self.__inventory:
@@ -43,9 +42,4 @@ inventory = Inventory()
 
 room1 = KeyPuzzle(0, True)
 room2 = KeyPuzzle(0, False)
-
-room1.enterRoom(inventory)
-room2.enterRoom(inventory)
-
-room1.enterRoom(inventory)
-room2.enterRoom(inventory)
+''

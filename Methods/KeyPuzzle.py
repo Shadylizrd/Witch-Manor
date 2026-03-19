@@ -6,6 +6,7 @@ class KeyPuzzle():
 
         # buttons
         self.__buttons = MovementControls()
+        self.__interact = self.__buttons.getInteract()
         
         #The type of puzzle so the Puzzles class can tell
         self.__type = "KEY"
@@ -56,7 +57,7 @@ class KeyPuzzle():
         if not self.__solved:
             print(self.__puzzleDescription)
             print("")
-            if self.__buttons.getInput() == "INTERACT":
+            if self.__interact.is_pressed:
                 self.puzzleInteract(inventory)
         else:
             print(self.__solvedDescription)
@@ -68,7 +69,7 @@ class KeyPuzzle():
         else:    
             print(" ==> Which item would you like to use?")
             inventory.printInventory()
-            item = int(input(""))
+            item = self.__buttons.getInput()
             trinket = inventory.remove(item)
             self.giveTrinket(trinket)
             inventory.addRelic()
@@ -77,7 +78,7 @@ class KeyPuzzle():
         if not self.__taken:
             print(self.__trinketDescription)
             print(" ")
-            if self.__buttons.getInput() == "INTERACT":
+            if self.__interact.is_pressed:
                 self.keyInteract(inventory)
         else:
             print(self.__takenDescription)
