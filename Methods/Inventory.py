@@ -38,7 +38,4 @@ class Inventory():
 
     def isEmpty(self):
         return len(self.__inventory) == 0
-inventory = Inventory()
 
-room1 = KeyPuzzle(0, True)
-room2 = KeyPuzzle(0, False)
