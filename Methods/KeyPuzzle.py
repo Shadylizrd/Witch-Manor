@@ -1,5 +1,5 @@
 from ReadJson import *
-from MovementControls import *
+from movement_controls import *
 
 class KeyPuzzle():
     def __init__(self, trinketIndex, isPuzzleRoom):
@@ -35,16 +35,6 @@ class KeyPuzzle():
     def getType(self):
         return self.__type 
     
-        # call this method with the result of an inventory method as the 'trinket' parameter
-    def giveTrinket(self, trinket):
-        if trinket == self.__trinket:
-            self.__solved = True
-            print(self.__correctTrinket)
-            return True
-        else:
-            print(self.__wrongTrinket)
-            return False
-        
     def enterRoom(self, inventory):
         # checks which room type and runs the appropriate room?
         # could remove this method entirely and run it between puzzleRoom and keyRoom
@@ -64,15 +54,37 @@ class KeyPuzzle():
             print("")
 
     def puzzleInteract(self, inventory):
+        pressed = False
         if inventory.isEmpty():
             print(" ==> You don't have any items to use here")
-        else:    
-            print(" ==> Which item would you like to use?")
-            inventory.printInventory()
-            item = self.__buttons.getInput()
-            trinket = inventory.remove(item)
-            self.giveTrinket(trinket)
-            inventory.addRelic()
+        else:  
+            while not pressed:  
+                print(" ==> Select item:")
+                print("")
+                inventory.printInventory()
+                # takes button input referring to place in inventory
+                item = self.__buttons.getInput()
+                trinket = inventory.remove(item)
+                # checks that puzzle solve was successdful and adds a relic
+                if self.giveTrinket(trinket):
+                    inventory.addRelic()
+                    # breaks out of the loop
+                    pressed = True
+
+                # other way to break out of loop
+                if self.__interact.is_pressed:
+                    pressed = True
+
+    # call this method with the result of an inventory method as the 'trinket' parameter
+    def giveTrinket(self, trinket):
+        if trinket == self.__trinket:
+            self.__solved = True
+            print(self.__correctTrinket)
+            return True
+        else:
+            print(self.__wrongTrinket)
+            return False
+                   
 
     def keyRoom(self, inventory):
         if not self.__taken:
