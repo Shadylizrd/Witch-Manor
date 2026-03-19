@@ -1,5 +1,5 @@
 from KeyPuzzle import *
-0
+
 class Inventory():
     def __init__(self):
         self.__inventory = []
@@ -31,7 +31,6 @@ class Inventory():
             return
         return popped
 
-    
     def printInventory(self):
         print(" -- Your Inventory -- ")
         for i in self.__inventory:
