@@ -76,7 +76,7 @@ class GameState:
 
         # Stop replaying solved rooms
         if self.roomSolved():
-            print("This room has already been solved.")
+            print("This room has already been solved")
             return
 
         passed = False
