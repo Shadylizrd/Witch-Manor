@@ -2,7 +2,7 @@ from Methods.MovementControls import MovementControls
 import time
 
 class MainMenu:
-    def __init__(self):#This defines a method called get_input.Its job is to check the buttons and return the player's action. The method belongs to the class, so it needs self.
+    def __init__(self):
         self.controls = MovementControls()
         self.options = ["Start Game", "Quit"] #tweak if more options needed
         self.currentOption = 0 #implement buttons to choose options
@@ -15,7 +15,8 @@ class MainMenu:
                 print(" ==> " +self.options[i])
             else:
                 print("   " + self.options[i])
-
+    
+    #Manouvreing through menu with button and loop
     def runMenu(self):
         while True:
             self.displayMenu()
@@ -27,11 +28,49 @@ class MainMenu:
 
             elif action == "DOWN":
                 if self.currentOption< len(self.options) -1:
-                    self.currrentOption +=1
+                    self.currentOption +=1
 
             elif action == "INTERACT":
                 return self.options[self.currentOption]
             
             time.sleep(0.1)
-                
+    #display results       
+    def endScreen(self, won):
+        print("   GAME OVER   ")
+        if won:
+            print("You escaped!")
+        else:
+            print("You failed to escape")
 
+        print("Press INTERACT to return to the main menu.")
+
+        while True:
+            action = self.controls.getInput()
+            if action =="INTERACT":
+                return
+
+#add game logic here or import from GameState
+def runGame():
+    print(" Game commencing !!")
+    time.sleep(2)
+
+    return True
+
+#create menu object
+def main():
+    menu = MainMenu()
+
+    while True:
+        choice = menu.runMenu()
+
+        if choice == "Start Game":
+            won = runGame()
+            menu.endScreen(won)
+
+        elif choice =="Quit":
+            print(" Quitting game.")
+            break
+
+#run only when file executed
+if __name__ == "__main__":
+    main()
