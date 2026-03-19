@@ -1,15 +1,14 @@
 from ReadJson import *
-from gpiozero import LED, Button
-import random
+from MovementControls import *
 
 class KeyPuzzle():
-    def __init__(self, trinketIndex, puzzleRoom):
+    def __init__(self, trinketIndex, isPuzzleRoom):
 
         # buttons
-        self.__interact = Button(4)
+        self.__buttons = MovementControls()
         
         #The type of puzzle so the Puzzles class can tell
-        self.__type="KEY"
+        self.__type = "KEY"
         
         # will take a random digit from 0-4, generated along with the rest of the puzzles
         # these numbers need to be generated at the same time so puzzles don't repeat
@@ -28,11 +27,14 @@ class KeyPuzzle():
 
         # extra attributes for state of room
         # puzzleRoom checks whether the room conatins the puzzle or the key
-        self.__puzzleRoom = puzzleRoom
+        self.__isPuzzleRoom = isPuzzleRoom
         self.__solved = False 
         self.__taken = False
     
-    # call this method with the result of an inventory method as the 'trinket' parameter
+    def getType(self):
+        return self.__type 
+    
+        # call this method with the result of an inventory method as the 'trinket' parameter
     def giveTrinket(self, trinket):
         if trinket == self.__trinket:
             self.__solved = True
@@ -41,31 +43,49 @@ class KeyPuzzle():
         else:
             print(self.__wrongTrinket)
             return False
-    
-    def enterRoom(self):
-        if self.__puzzleRoom:
-            if not self.__solved:
-                print(self.__puzzleDescription)
-                if self.__interact.is_pressed:
-                    # should be something like trinket = openInventory() --> returns a trinket
-                    trinket = input("Which item would you like to use?\n")
-                    # placeholder ^^^
-                    self.giveTrinket(trinket)
-            else:
-                print(self.__solvedDescription)
+        
+    def enterRoom(self, inventory):
+        # checks which room type and runs the appropriate room?
+        # could remove this method entirely and run it between puzzleRoom and keyRoom
+        if self.__isPuzzleRoom:
+            self.puzzleRoom(inventory)
         else:
-            if not self.__taken:
-                print(self.__trinketDescription)
-                if self.__interact.is_pressed:
-                    # add trinket into inventory
-                    # addInventory() or something
-                    self.__taken = True
-            else:
-                print(self.__takenDescription)
-    
-    def getType(self):
-        return self.__type
+            self.keyRoom(inventory)
 
+    def puzzleRoom(self, inventory):
+        if not self.__solved:
+            print(self.__puzzleDescription)
+            print("")
+            if self.__buttons.getInput() == "INTERACT":
+                self.puzzleInteract(inventory)
+        else:
+            print(self.__solvedDescription)
+            print("")
+
+    def puzzleInteract(self, inventory):
+        if inventory.isEmpty():
+            print(" ==> You don't have any items to use here")
+        else:    
+            print(" ==> Which item would you like to use?")
+            inventory.printInventory()
+            item = int(input(""))
+            trinket = inventory.remove(item)
+            self.giveTrinket(trinket)
+            inventory.addRelic()
+
+    def keyRoom(self, inventory):
+        if not self.__taken:
+            print(self.__trinketDescription)
+            print(" ")
+            if self.__buttons.getInput() == "INTERACT":
+                self.keyInteract(inventory)
+        else:
+            print(self.__takenDescription)
+            print(" ")
+        
+    def keyInteract(self, inventory):
+        inventory.add(self.__trinket)
+        self.__taken = True
         
 # inventory method or something
 # when you interact list inventory items
