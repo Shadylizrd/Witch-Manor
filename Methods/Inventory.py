@@ -42,9 +42,4 @@ inventory = Inventory()
 
 room1 = KeyPuzzle(0, True)
 room2 = KeyPuzzle(0, False)
-
-room1.enterRoom(inventory)
-room2.enterRoom(inventory)
-
-room1.enterRoom(inventory)
-room2.enterRoom(inventory)
+''

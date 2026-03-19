@@ -22,15 +22,15 @@ class MainMenu:
             self.displayMenu()
             action = self.controls.getInput()
 
-            if action== "UP":
+            if action== 0:
                 if self.currentOption > 0:
                     self.currentOption -=1
 
-            elif action == "DOWN":
+            elif action == 1:
                 if self.currentOption< len(self.options) -1:
                     self.currentOption +=1
 
-            elif action == "INTERACT":
+            if self.controls.getInteract():
                 return self.options[self.currentOption]
             
             time.sleep(0.1)
@@ -45,8 +45,7 @@ class MainMenu:
         print("Press INTERACT to return to the main menu.")
 
         while True:
-            action = self.controls.getInput()
-            if action =="INTERACT":
+            if self.controls.getInteract():
                 return
 
 #add game logic here or import from GameState
