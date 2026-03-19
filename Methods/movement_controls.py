@@ -13,26 +13,25 @@ class MovementControls:
     # continuously checks buttons and returns a string repressenting the action
     def getInput(self):
             # Checks if the switches are pressed and prevent button press being detected multiple times
-            if self.__upButton.is_pressed:
-                time.sleep(0.2) 
-                return 0
+        if self.__upButton.is_pressed:
+            time.sleep(0.2) 
+            return 0
+        elif self.__downButton.is_pressed:
+            time.sleep(0.2)
+            return 1
 
-            elif self.__downButton.is_pressed:
-                time.sleep(0.2)
-                return 1
+        elif self.__leftButton.is_pressed:
+            time.sleep(0.2)
+            return 2
 
-            elif self.__leftButton.is_pressed:
-                time.sleep(0.2)
-                return 2
+        elif self.__rightButton.is_pressed:
+            time.sleep(0.2)
+            return 3
 
-            elif self.__rightButton.is_pressed:
-                time.sleep(0.2)
-                return 3
-            
-            return None
+        return None
             
     def getInteract(self):
         if self.__interactButton.is_pressed:
             time.sleep(0.2)
-            return True
-        return False
+            return 4
+        return None
