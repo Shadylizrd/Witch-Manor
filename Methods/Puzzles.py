@@ -30,14 +30,14 @@ class Puzzles():
         print(self.__puzzles)
            
     #calls the SimonSays and KeyPuzzle classes       
-    def simonSays(self, index):
-        #checks if they got it correct
-        passed=self.__puzzles[index][0].sequence()
-        return passed
-       
-    def key(self, index):
-        passed=self.__puzzles[index][0].sequence()
-        return passed
+#     def simonSays(self, index):
+#         #checks if they got it correct
+#         passed=self.__puzzles[index][0].sequence()
+#         return passed
+#        
+#     def key(self, index):
+#         passed=self.__puzzles[index][0].sequence()
+#         return passed
     
     #lists the types of puzzles to be put in the game
     def getPuzzles(self):
@@ -58,43 +58,3 @@ class Puzzles():
                 complete= False
         return complete
 
-    #gets called when the player tries to complete a puzzle
-    def runPuzzle(self, currentPuzzle):
-        for i in range(len(self.__puzzles)):
-            if self.__puzzles[i][0]==currentPuzzle:
-                index=i     
-            #checks which puzzle it is for
-            if currentPuzzle.getType()=="SIMON":    
-                if self.simonSays(index):
-                    self.setPassedPuzzles(index)
-            elif currentPuzzle.getType()=="KEY":    
-                if self.key(index):
-                    self.setPassedPuzzles(index)
-
-
-
-puzzle=Puzzles()
-#replace index with the a value obtained from the puzzle when it is found 
-index=0
-
-#example of how going through each of the puzzles could work
-while puzzle.completedPuzzles()==False and index<5:
-    #checks they haven't already completed that puzzle
-    currentPuzzle=puzzle.getPuzzles()[index][0]
-    #figures out puzzle index
-    for i in range(len(puzzle.getPuzzles())):
-            if puzzle.getPuzzles()[i][0]==currentPuzzle:
-                index=i
-                if puzzle.checkCompleted(index)==False:
-                    #checks which puzzle it is for
-                    if currentPuzzle.getType()=="SIMON":    
-                        correct=puzzle.simonSays(index)
-                        if correct:
-                            puzzle.setPassedPuzzles(index)
-                    elif currentPuzzle.getType()=="KEY":    
-                        correct=puzzle.key()
-                        if correct:
-                            puzzle.setPassedPuzzles(index)
-                else:
-                    print("You have already completed that puzzle \n")
-    index+=1
