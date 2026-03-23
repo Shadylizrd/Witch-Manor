@@ -1,9 +1,12 @@
 import time
 from MovementControls import *
 from Puzzles import *
+from Inventory import *
 
 global BUTTONS
+global INVENTORY
 BUTTONS = MovementControls()
+INVENTORY = Inventory
 
 
 class GameState:
@@ -65,7 +68,7 @@ class GameState:
         return self.__currentRoom
 
     def getCurrentPuzzle(self):
-        return self.__rooms[self.__currentRoom]
+        return self.__rooms[self.__currentRoom][0]
 
     def roomSolved(self):
         return self.__puzzles.checkCompleted(self.__currentRoom)
@@ -93,12 +96,6 @@ class GameState:
                 print("Starting Key puzzle...")
                 # placeholder if a real KEY class is added later
                 passed = True
-
-        # If the puzzle was stored as the string "KEY"
-        elif currentPuzzle == "KEY":
-            print("Starting Key puzzle...")
-            # placeholder until KeyPuzzle is fully connected
-            passed = True
 
         # Update solved state and reward item
         if passed:
