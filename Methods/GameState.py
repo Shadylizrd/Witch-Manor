@@ -5,11 +5,11 @@ from Puzzles import *
 global BUTTONS
 BUTTONS = MovementControls()
 
+
 class GameState:
     def __init__(self, time_limit=300):
         # Main game state
         self.__state = "PLAYING"   # PLAYING / WON / LOST
-        self.__controls = MovementControls()
         self.__puzzles = Puzzles()
 
         # Room state

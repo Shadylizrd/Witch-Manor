@@ -1,4 +1,5 @@
 from ReadJson import *
+from GameState import *
 
 class KeyPuzzle():
     def __init__(self, trinketIndex, isPuzzleRoom):
@@ -7,8 +8,6 @@ class KeyPuzzle():
         self.__type = "KEY"
         
         # will take a random digit from 0-4, generated along with the rest of the puzzles
-        # these numbers need to be generated at the same time so puzzles don't repeat
-        self.__trinketIndex = trinketIndex
         # uses the 'trinketIndex' here so that it doesn't need to be called in all the other attributes
         self.__keyDict = readJson('KeyDescriptions.json', 'trinkets')[trinketIndex]
 
@@ -30,47 +29,47 @@ class KeyPuzzle():
     def getType(self):
         return self.__type 
     
-    def enterRoom(self, inventory):
+    def enterRoom(self):
         # checks which room type and runs the appropriate room?
         # could remove this method entirely and run it between puzzleRoom and keyRoom
         if self.__isPuzzleRoom:
-            self.puzzleRoom(inventory)
+            self.puzzleRoom()
         else:
-            self.keyRoom(inventory)
+            self.keyRoom()
 
-    def puzzleRoom(self, inventory, button):
+    def puzzleRoom(self):
         if not self.__solved:
             print(self.__puzzleDescription)
             print("")
-            if interact.is_pressed:
-                self.puzzleInteract(inventory, interact)
+            if BUTTONS.getInput() == 4:
+                self.puzzleInteract()
         else:
             print(self.__solvedDescription)
             print("")
 
-    def puzzleInteract(self, inventory, interact):
+    def puzzleInteract(self):
         pressed = False
-        if inventory.isEmpty():
+        if INVENTORY.isEmpty():
             print(" ==> You don't have any items to use here")
         else:  
             while not pressed:  
                 print(" ==> Select item:")
                 print("")
-                inventory.printInventory()
-                # takes button input referring to place in inventory
-                item = self.__buttons.getInput()
-                trinket = inventory.remove(item)
+                INVENTORY.print()
+                # takes button input referring to place in 
+                item = BUTTONS.getInput()
+                trinket = INVENTORY.remove(item)
                 # checks that puzzle solve was successdful and adds a relic
                 if self.giveTrinket(trinket):
-                    inventory.addRelic()
+                    INVENTORY.addRelic()
                     # breaks out of the loop
                     pressed = True
 
                 # other way to break out of loop
-                if self.__interact.is_pressed:
+                if BUTTONS.getInput() == 4:
                     pressed = True
 
-    # call this method with the result of an inventory method as the 'trinket' parameter
+    # call this method with the result of an  method as the 'trinket' parameter
     def giveTrinket(self, trinket):
         if trinket == self.__trinket:
             self.__solved = True
@@ -81,22 +80,22 @@ class KeyPuzzle():
             return False
                    
 
-    def keyRoom(self, inventory):
+    def keyRoom(self, ):
         if not self.__taken:
             print(self.__trinketDescription)
             print(" ")
-            if self.__interact.is_pressed:
-                self.keyInteract(inventory)
+            if BUTTONS.getInput() == 4:
+                self.keyInteract()
         else:
             print(self.__takenDescription)
             print(" ")
         
-    def keyInteract(self, inventory):
-        inventory.add(self.__trinket)
+    def keyInteract(self, ):
+        INVENTORY.add(self.__trinket)
         self.__taken = True
         
-# inventory method or something
-# when you interact list inventory items
+#  method or something
+# when you interact list  items
 # which item would you like to use?
 # select via num input
 # return 'trinket'
