@@ -2,14 +2,14 @@ from ReadJson import *
 from GameState import *
 
 class KeyPuzzle():
-    def __init__(self, trinketIndex, isPuzzleRoom):
+    def __init__(self, puzzleIndex, isPuzzleRoom):
         
         #The type of puzzle so the Puzzles class can tell
         self.__type = "KEY"
         
         # will take a random digit from 0-4, generated along with the rest of the puzzles
         # uses the 'trinketIndex' here so that it doesn't need to be called in all the other attributes
-        self.__keyDict = readJson('KeyDescriptions.json', 'trinkets')[trinketIndex]
+        self.__keyDict = readJson('KeyDescriptions.json', 'trinkets')[puzzleIndex]
 
         # initialising all the main attributes of the class
         self.__trinket = self.__keyDict['trinket']
@@ -24,10 +24,12 @@ class KeyPuzzle():
         # puzzleRoom checks whether the room conatins the puzzle or the key
         self.__isPuzzleRoom = isPuzzleRoom
         self.__solved = False 
-        self.__taken = False
     
     def getType(self):
         return self.__type 
+    
+    def solvedDescription(self):
+        print(self.__solvedDescription)
     
     def enterRoom(self):
         # checks which room type and runs the appropriate room?
@@ -37,15 +39,13 @@ class KeyPuzzle():
         else:
             self.keyRoom()
 
+        return self.__solved
+
     def puzzleRoom(self):
-        if not self.__solved:
-            print(self.__puzzleDescription)
-            print("")
-            if BUTTONS.getInput() == 4:
-                self.puzzleInteract()
-        else:
-            print(self.__solvedDescription)
-            print("")
+        print(self.__puzzleDescription)
+        print("")
+        if BUTTONS.getInput() == 4:
+            self.puzzleInteract()
 
     def puzzleInteract(self):
         pressed = False
@@ -81,7 +81,7 @@ class KeyPuzzle():
                    
 
     def keyRoom(self, ):
-        if not self.__taken:
+        if not self.__solved:
             print(self.__trinketDescription)
             print(" ")
             if BUTTONS.getInput() == 4:
@@ -92,7 +92,7 @@ class KeyPuzzle():
         
     def keyInteract(self, ):
         INVENTORY.add(self.__trinket)
-        self.__taken = True
+        self.__solved = True
         
 #  method or something
 # when you interact list  items

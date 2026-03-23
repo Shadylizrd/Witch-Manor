@@ -81,21 +81,18 @@ class GameState:
 
         # Stop replaying solved rooms
         if self.roomSolved():
-            print("This room has already been solved")
+            currentPuzzle.solvedDescription()
             return
 
         passed = False
 
         # Simon Says object
-        if hasattr(currentPuzzle, "getType"):
-            if currentPuzzle.getType() == "SIMON":
-                print("Starting Simon Says puzzle...")
-                passed = currentPuzzle.sequence()
+        
+        if currentPuzzle.getType() == "SIMON":
+            passed = currentPuzzle.enterRoom(self.roomSolved)
 
-            elif currentPuzzle.getType() == "KEY":
-                print("Starting Key puzzle...")
-                # placeholder if a real KEY class is added later
-                passed = True
+        elif currentPuzzle.getType() == "KEY":
+            passed = currentPuzzle.enterRoom()
 
         # Update solved state and reward item
         if passed:
@@ -113,8 +110,10 @@ class GameState:
     # Win / lose checks
     # -------------------------
     def checkWin(self):
-        if self.__puzzles.completedPuzzles():
-            self.__state = "WON"
+        if INVENTORY.checkWin() == 5:
+            return True
+        return False
+        
 
     def getState(self):
         return self.__state

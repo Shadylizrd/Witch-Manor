@@ -2,13 +2,17 @@ import random
 from gpiozero import LED, Button
 import time
 from GameState import *
+from ReadJson import *
 #takes a difficulty which is how many colours will be in the sequence
 
 COLOURS=["RED", "BLUE", "GREEN", "YELLOW"]
 class SimonSays():
     
-    def __init__(self,difficulty):
+    def __init__(self,difficulty, puzzleIndex):
                 
+        self.__simonDict = readJson('SimonDescriptions.json', 'SimonRoomDescriptions')[puzzleIndex]
+        self.__puzzleDescription = self.__simonDict['puzzleDescription']
+        self.__solvedDescription = self.__simonDict['solvedDescription']
         
         #setting up variables
         self.__answer=[]
@@ -31,6 +35,10 @@ class SimonSays():
         self.__currentDifficulty=0
         for i in range(self.__difficulty):
             self.__answer.append(COLOURS[random.randint(0,3)])
+
+    def enterRoom(self):
+
+
     
     #checks if the user has entered the entire sequence correctly
     #recoursively calls itself until the entire sequence is done
