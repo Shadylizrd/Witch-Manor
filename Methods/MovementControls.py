@@ -28,11 +28,7 @@ class MovementControls:
         elif self.__rightButton.is_pressed:
             time.sleep(0.2)
             return 3
-
-        return None
-            
-    def getInteract(self):
+        
         if self.__interactButton.is_pressed:
             time.sleep(0.2)
             return 4
-        return None
