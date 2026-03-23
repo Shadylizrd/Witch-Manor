@@ -16,6 +16,7 @@ class MovementControls:
         if self.__upButton.is_pressed:
             time.sleep(0.2) 
             return 0
+        
         elif self.__downButton.is_pressed:
             time.sleep(0.2)
             return 1

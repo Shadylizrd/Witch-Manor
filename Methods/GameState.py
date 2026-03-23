@@ -1,7 +1,9 @@
 import time
-from movement_controls import MovementControls
-from Puzzles import Puzzles
+from MovementControls import *
+from Puzzles import *
 
+global BUTTONS
+BUTTONS = MovementControls()
 
 class GameState:
     def __init__(self, time_limit=300):
@@ -39,22 +41,22 @@ class GameState:
     # -------------------------
     # Room movement
     # -------------------------
-   def move(self, direction):
-    if direction == 0:  # UP
-        if self.__currentRoom < len(self.__rooms) - 1:
-            self.__currentRoom += 1
+    def move(self, direction):
+        if direction == 0:  # UP
+            if self.__currentRoom < len(self.__rooms) - 1:
+                self.__currentRoom += 1
 
-    elif direction == 1:  # DOWN
-        if self.__currentRoom > 0:
-            self.__currentRoom -= 1
+        elif direction == 1:  # DOWN
+            if self.__currentRoom > 0:
+                self.__currentRoom -= 1
 
-    elif direction == 2:  # LEFT
-        if self.__currentRoom > 0:
-            self.__currentRoom -= 1
+        elif direction == 2:  # LEFT
+            if self.__currentRoom > 0:
+                self.__currentRoom -= 1
 
-    elif direction == 3:  # RIGHT
-        if self.__currentRoom < len(self.__rooms) - 1:
-            self.__currentRoom += 1
+        elif direction == 3:  # RIGHT
+            if self.__currentRoom < len(self.__rooms) - 1:
+                self.__currentRoom += 1
 
     # -------------------------
     # Room / puzzle info
@@ -147,7 +149,7 @@ class GameState:
 
             self.displayStatus()
 
-            userInput = self.__controls.getInput()
+            userInput = BUTTONS.getInput()
 
             if userInput in ["UP", "DOWN", "LEFT", "RIGHT"]:
                 self.moveRoom(userInput)

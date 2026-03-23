@@ -1,12 +1,7 @@
 from ReadJson import *
-from movement_controls import *
 
 class KeyPuzzle():
     def __init__(self, trinketIndex, isPuzzleRoom):
-
-        # buttons
-        self.__buttons = MovementControls()
-        self.__interact = self.__buttons.getInteract()
         
         #The type of puzzle so the Puzzles class can tell
         self.__type = "KEY"
@@ -43,17 +38,17 @@ class KeyPuzzle():
         else:
             self.keyRoom(inventory)
 
-    def puzzleRoom(self, inventory):
+    def puzzleRoom(self, inventory, button):
         if not self.__solved:
             print(self.__puzzleDescription)
             print("")
-            if self.__interact.is_pressed:
-                self.puzzleInteract(inventory)
+            if interact.is_pressed:
+                self.puzzleInteract(inventory, interact)
         else:
             print(self.__solvedDescription)
             print("")
 
-    def puzzleInteract(self, inventory):
+    def puzzleInteract(self, inventory, interact):
         pressed = False
         if inventory.isEmpty():
             print(" ==> You don't have any items to use here")
@@ -105,3 +100,5 @@ class KeyPuzzle():
 # which item would you like to use?
 # select via num input
 # return 'trinket'
+
+# you need to pass in the buttons as paramaters or we get errors - clashing
