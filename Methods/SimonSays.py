@@ -1,25 +1,14 @@
 import random
 from gpiozero import LED, Button
 import time
+from GameState import *
 #takes a difficulty which is how many colours will be in the sequence
 
 COLOURS=["RED", "BLUE", "GREEN", "YELLOW"]
 class SimonSays():
     
     def __init__(self,difficulty):
-        
-        #setting up the I/O
-        #LEDs
-        self.__red=LED(21)
-        self.__green=LED(20)
-        self.__blue=LED(16)
-        self.__yellow=LED(12)
-        #Buttons
-        self.__redButton=Button(23)
-        self.__greenButton=Button(22)
-        self.__blueButton=Button(27)
-        self.__yellowButton=Button(17)
-        self.__exitButton=Button(4)         
+                
         
         #setting up variables
         self.__answer=[]
@@ -69,19 +58,19 @@ class SimonSays():
     def showSequence(self):
         for i in range(self.__currentDifficulty):
             if self.__answer[i]=="RED":
-                self.__red.on()
+                red.on()
             elif self.__answer[i]=="BLUE":
-                self.__blue.on()
+                blue.on()
             elif self.__answer[i]=="GREEN":
-                self.__green.on()
+                green.on()
             elif self.__answer[i]=="YELLOW":
-                self.__yellow.on()
+                yellow.on()
             time.sleep(0)
             #makes sure all LEDs are off before showing the next LED
-            self.__red.off()
-            self.__green.off()
-            self.__blue.off()
-            self.__yellow.off()
+            red.off()
+            green.off()
+            blue.off()
+            yellow.off()
 
 
     #checks the user input against the sequence returns False if it isn't the same
@@ -95,28 +84,28 @@ class SimonSays():
             while pressed==False:
                 
                 #checks if each button is pressed then if that was the button that was supposed to be pressed
-                if self.__redButton.is_pressed:
+                if BUTTONS.getInput()==0:
                     pressed=True
                     if self.__answer[i]!="RED":
                         #returns False if it was not the correct button
                         return False, toBreak
                     
-                elif self.__blueButton.is_pressed:
+                elif BUTTONS.getInput()==1:
                     pressed=True
                     if self.__answer[i]!="BLUE":
                         return False, toBreak
                     
-                elif self.___greenButton.is_pressed:
+                elif BUTTONS.getInput()==2:
                     pressed=True
                     if self.__answer[i]!="GREEN":
                         return False, toBreak
                     
-                elif self.__yellowButton.is_pressed:
+                elif BUTTONS.getInput()==3:
                     pressed=True
                     if self.__answer[i]!="YELLOW":
                         return False, toBreak
                     
-                elif self.__exitButton.is_pressed:
+                elif BUTTONS.getInput()==4:
                     return False, True
                     
                     
