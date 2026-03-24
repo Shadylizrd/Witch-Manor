@@ -125,6 +125,10 @@ class GameState:
     # -------------------------
     def run(self):
         print("Game started!")
+        print(f"You stare down the hall... {self.__totalRooms} ahead of you")
+        print("You must find all the relics before time runs out so that you may escape")
+        print("")
+        time.sleep(2)
 
         while self.__state == "PLAYING":
             self.checkTimer()

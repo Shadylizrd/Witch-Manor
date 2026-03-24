@@ -34,10 +34,9 @@ class KeyPuzzle():
     def enterRoom(self):
         # checks which room type and runs the appropriate room?
         # could remove this method entirely and run it between puzzleRoom and keyRoom
-        if self.__isPuzzleRoom:
+        if self.__isPuzzleRoom == "puzzleRoom":
             self.puzzleRoom()
-        else:
-            self.keyRoom()
+        self.keyRoom()
 
         return self.__solved
 
