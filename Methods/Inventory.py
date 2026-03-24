@@ -8,11 +8,16 @@ class Inventory():
 
     def addRelic(self):
         self.__numRelics += 1
-        print(f" ==> you now have {self.__numRelics} relics!")
+        print(" ==> you gained a special relic!")
+        if self.__numRelics > 1:
+            print(f" ==> you now have {self.__numRelics} relics!")
+        else:
+            print(" ==> you now have 1 relic!")
+
 
     # once this equals 5 then you should win the game
     # run this method each time you pick up a relic
-    def checkRelics(self):
+    def checkWin(self):
         return self.__numRelics
     
     # simple add and remove methods

@@ -52,16 +52,15 @@ class KeyPuzzle():
         if INVENTORY.isEmpty():
             print(" ==> You don't have any items to use here")
         else:  
+            print(" ==> Select item:")
+            print("")
+            INVENTORY.print()
             while not pressed:  
-                print(" ==> Select item:")
-                print("")
-                INVENTORY.print()
                 # takes button input referring to place in 
                 item = BUTTONS.getInput()
                 trinket = INVENTORY.remove(item)
                 # checks that puzzle solve was successdful and adds a relic
                 if self.giveTrinket(trinket):
-                    INVENTORY.addRelic()
                     # breaks out of the loop
                     pressed = True
 
@@ -90,7 +89,7 @@ class KeyPuzzle():
             print(self.__takenDescription)
             print(" ")
         
-    def keyInteract(self, ):
+    def keyInteract(self):
         INVENTORY.add(self.__trinket)
         self.__solved = True
         

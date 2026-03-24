@@ -36,10 +36,13 @@ class SimonSays():
         for i in range(self.__difficulty):
             self.__answer.append(COLOURS[random.randint(0,3)])
 
+    def solvedDescription(self):
+        print(self.__solvedDescription)
+
     def enterRoom(self):
-
-
-    
+        print(self.__puzzleDescription)
+        return self.sequence()
+        
     #checks if the user has entered the entire sequence correctly
     #recoursively calls itself until the entire sequence is done
     def sequence(self):

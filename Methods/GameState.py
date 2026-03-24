@@ -20,9 +20,6 @@ class GameState:
         self.__currentRoom = 0
         self.__totalRooms = len(self.__rooms)
 
-        # Rewards / flavour items
-        self.__itemsCollected = []
-
         # Timer
         self.__timeLimit = time_limit
         self.__startTime = time.time()
@@ -45,21 +42,19 @@ class GameState:
     # Room movement
     # -------------------------
     def move(self, direction):
-        if direction == 0:  # UP
+        print(f"you walk away from room {self.__currentRoom}", end = " ")
+        if direction == 0 or direction == 3:  # UP and RiGHT
             if self.__currentRoom < len(self.__rooms) - 1:
                 self.__currentRoom += 1
+                print(f"you walk towards door {self.__currentRoom}")
+                print("")
 
-        elif direction == 1:  # DOWN
+        elif direction == 1 or direction == 2:  # DOWN and LEFT
             if self.__currentRoom > 0:
                 self.__currentRoom -= 1
+                print(f"you walk towards door {self.__currentRoom}")
+                print("")
 
-        elif direction == 2:  # LEFT
-            if self.__currentRoom > 0:
-                self.__currentRoom -= 1
-
-        elif direction == 3:  # RIGHT
-            if self.__currentRoom < len(self.__rooms) - 1:
-                self.__currentRoom += 1
 
     # -------------------------
     # Room / puzzle info
@@ -85,24 +80,18 @@ class GameState:
             return
 
         passed = False
-
-        # Simon Says object
-        
-        if currentPuzzle.getType() == "SIMON":
-            passed = currentPuzzle.enterRoom(self.roomSolved)
-
-        elif currentPuzzle.getType() == "KEY":
-            passed = currentPuzzle.enterRoom()
+        # Will run the puzzle and intro text
+        passed = currentPuzzle.enterRoom()
 
         # Update solved state and reward item
         if passed:
             self.__puzzles.setPassedPuzzles(self.__currentRoom)
-            itemName = "Item from Room " + str(self.__currentRoom + 1)
-            self.__itemsCollected.append(itemName)
-            print("Puzzle solved!")
-            print("You collected:", itemName)
+            print(" ==> Puzzle solved!")
+            print("")
+            INVENTORY.addRelic()
         else:
-            print("Puzzle failed or exited.")
+            print(" ==> Puzzle failed or exited.")
+            print("")
 
         self.checkWin()
 
@@ -128,7 +117,7 @@ class GameState:
         print("Time remaining:", self.timeRemaining(), "seconds")
         print("Current room:", self.__currentRoom + 1, "/", self.__totalRooms)
         print("Solved:", self.roomSolved())
-        print("Items collected:", len(self.__itemsCollected))
+        print("Relics collected:", INVENTORY.checkWin)
         print("======================")
 
     # -------------------------
@@ -147,17 +136,17 @@ class GameState:
 
             userInput = BUTTONS.getInput()
 
-            if userInput in ["UP", "DOWN", "LEFT", "RIGHT"]:
+            if userInput in [0, 1, 2, 3]:
                 self.moveRoom(userInput)
 
-            elif userInput == "INTERACT":
+            elif userInput == 4:
                 self.interact()
 
         # End states
         if self.__state == "WON":
             print("\nYou escaped!")
             print("All 5 puzzles have been completed.")
-            print("Items collected:", self.__itemsCollected)
+            print("You collected all the relics and can make your great escape!")
 
         elif self.__state == "LOST":
             print("\nTime ran out! Game over.")
