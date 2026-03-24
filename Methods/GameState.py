@@ -6,7 +6,7 @@ from Inventory import *
 global BUTTONS
 global INVENTORY
 BUTTONS = MovementControls()
-INVENTORY = Inventory
+INVENTORY = Inventory()
 
 
 class GameState:
@@ -93,7 +93,8 @@ class GameState:
             print(" ==> Puzzle failed or exited.")
             print("")
 
-        self.checkWin()
+        if self.checkWin():
+            self.__state = "WON"
 
     # -------------------------
     # Win / lose checks
@@ -141,11 +142,11 @@ class GameState:
             userInput = BUTTONS.getInput()
 
             if userInput in [0, 1, 2, 3]:
-                self.moveRoom(userInput)
+                self.move(userInput)
 
             elif userInput == 4:
                 self.interact()
-
+            
         # End states
         if self.__state == "WON":
             print("\nYou escaped!")

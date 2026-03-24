@@ -1,4 +1,5 @@
-from Methods.MovementControls import MovementControls
+from MovementControls import MovementControls
+from GameState import *
 import time
 
 class MainMenu:
@@ -6,6 +7,7 @@ class MainMenu:
         self.controls = MovementControls()
         self.options = ["Start Game", "Quit"] #tweak if more options needed
         self.currentOption = 0 #implement buttons to choose options
+        self.game=GameState()
 
     #display menu in terminal
     def displayMenu(self):
@@ -52,7 +54,7 @@ class MainMenu:
 def runGame():
     print(" Game commencing !!")
     time.sleep(2)
-
+    self.game.run()
     return True
 
 #create menu object
