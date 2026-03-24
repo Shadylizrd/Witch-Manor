@@ -36,8 +36,8 @@ class KeyPuzzle():
         # could remove this method entirely and run it between puzzleRoom and keyRoom
         if self.__isPuzzleRoom == "puzzleRoom":
             self.puzzleRoom()
-        self.keyRoom()
-
+        if self.__isPuzzleRoom == "keyRoom":
+            self.keyRoom()
         return self.__solved
 
     def puzzleRoom(self):

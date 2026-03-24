@@ -38,9 +38,11 @@ class SimonSays():
 
     def solvedDescription(self):
         print(self.__solvedDescription)
+        print("")
 
     def enterRoom(self):
         print(self.__puzzleDescription)
+        print("")
         return self.sequence()
         
     #checks if the user has entered the entire sequence correctly
