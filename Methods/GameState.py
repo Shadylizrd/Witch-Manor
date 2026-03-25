@@ -1,4 +1,5 @@
 import time
+import random
 from MovementControls import *
 from Puzzles import *
 from Inventory import *
@@ -16,7 +17,14 @@ class GameState:
         self.__puzzles = Puzzles()
 
         # Room state
-        self.__rooms = self.__puzzles.getPuzzles()
+        #randomises the layout of the rooms to prevent the key and puzzle room for the key always being next to each other
+        self.__rooms=[]
+        tempPuzzles=self.__puzzles
+        for i in range(len(self.__puzzles)):
+            num=random.randint(0,len(tempPuzzles))
+            self.__rooms.append(tempPuzzles[num])
+            tempPuzzles.pop(num)
+        
         self.__currentRoom = 0
         self.__totalRooms = len(self.__rooms)
 
@@ -44,7 +52,7 @@ class GameState:
     def move(self, direction):
         print(f"you walk away from room {self.__currentRoom}", end = " ")
         if direction == 0 or direction == 3:  # UP and RiGHT
-            if self.__currentRoom < len(self.__rooms) - 1:
+            if self.__currentRoom < self.__totalRooms - 1:
                 self.__currentRoom += 1
                 print(f"you walk towards door {self.__currentRoom}")
                 print("")
