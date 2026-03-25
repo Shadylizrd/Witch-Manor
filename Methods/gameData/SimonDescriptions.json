@@ -1,9 +1,24 @@
 {
 "SimonRoomDescriptions":[
-    {"Descriprion":"You enter a large room with fabric sprawled across every surface, you spy a safe tucked under countless layers of velvet. Do you try and crack the code?"},
-    {"Descriprion":"2"},
-    {"Descriprion":"3"},
-    {"Descriprion":"4"},
-    {"Descriprion":"5"}
+    {
+    "PuzzleDescriprion":"You enter a large room with fabric sprawled across every surface, you spy a safe tucked under countless layers of velvet. Do you try and crack the code?",
+    "solvedDescription":""
+    },
+    {
+    "PuzzleDescriprion":"2",
+    "solvedDescription":""
+    },
+    {
+    "PuzzleDescriprion":"3",
+    "solvedDescription":""
+    },
+    {
+    "PuzzleDescriprion":"4",
+    "solvedDescription":""
+    },
+    {
+    "PuzzleDescriprion":"5",
+    "solvedDescription":""
+    }
 ]
 }

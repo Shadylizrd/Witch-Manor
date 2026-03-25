@@ -1,31 +1,40 @@
 from gpiozero import LED
 import time
-from MovementControls import MovementControls
-from Puzzles import Puzzles
+import random
+from MovementControls import *
+from Puzzles import *
+from Inventory import *
 
+global BUTTONS
+global INVENTORY
+BUTTONS = MovementControls()
+INVENTORY = Inventory()
 
 
 class GameState:
     def __init__(self, time_limit=300):
         # Main game state
-        self.__state = "PLAYING"   # PLAYING / WON / LOST
-        self.__controls = MovementControls()
+        self.__state = "PLAYING"
         self.__puzzles = Puzzles()
 
         # Room state
-        self.__rooms = self.__puzzles.getPuzzles()
+        # randomises the layout of the rooms
+        self.__rooms = []
+        tempPuzzles = self.__puzzles.getPuzzles().copy()
+        for i in range(len(tempPuzzles)):
+            num = random.randint(0, len(tempPuzzles) - 1)
+            self.__rooms.append(tempPuzzles[num])
+            tempPuzzles.pop(num)
+
         self.__currentRoom = 0
         self.__totalRooms = len(self.__rooms)
-
-        # Rewards / flavour items
-        self.__itemsCollected = []
 
         # Timer
         self.__timeLimit = time_limit
         self.__startTime = time.time()
 
         # LED Flash Timer
-        self.__timerLed = LED(14)   # change pin if needed
+        self.__timerLed = LED(14)
         self.__lastFlashTime = time.time()
         self.__ledState = False
 
@@ -42,13 +51,12 @@ class GameState:
     def checkTimer(self):
         if self.timeRemaining() <= 0:
             self.__state = "LOST"
-    
+
     def timerLedOn(self):
         self.__timerLed.on()
 
     def timerLedOff(self):
         self.__timerLed.off()
-    
 
     def updateTimerLed(self):
         remaining = self.timeRemaining()
@@ -74,28 +82,23 @@ class GameState:
                 self.timerLedOn()
                 self.__ledState = True
 
-
-
-
     # -------------------------
     # Room movement
     # -------------------------
     def move(self, direction):
-        if direction == 0:  # UP
-            if self.__currentRoom < len(self.__rooms) - 1:
-                self.__currentRoom += 1
+        print(f"you walk away from room {self.__currentRoom}", end=" ")
 
-        elif direction == 1:  # DOWN
+        if direction == 0 or direction == 3:  # UP and RIGHT
+            if self.__currentRoom < self.__totalRooms - 1:
+                self.__currentRoom += 1
+                print(f"you walk towards door {self.__currentRoom}")
+                print("")
+
+        elif direction == 1 or direction == 2:  # DOWN and LEFT
             if self.__currentRoom > 0:
                 self.__currentRoom -= 1
-
-        elif direction == 2:  # LEFT
-            if self.__currentRoom > 0:
-                self.__currentRoom -= 1
-
-        elif direction == 3:  # RIGHT
-            if self.__currentRoom < len(self.__rooms) - 1:
-                self.__currentRoom += 1
+                print(f"you walk towards door {self.__currentRoom}")
+                print("")
 
     # -------------------------
     # Room / puzzle info
@@ -117,46 +120,31 @@ class GameState:
 
         # Stop replaying solved rooms
         if self.roomSolved():
-            print("This room has already been solved")
+            currentPuzzle.solvedDescription()
             return
 
-        passed = False
-
-        # Simon Says object
-        if hasattr(currentPuzzle, "getType"):
-            if currentPuzzle.getType() == "SIMON":
-                print("Starting Simon Says puzzle...")
-                passed = currentPuzzle.sequence()
-
-            elif currentPuzzle.getType() == "KEY":
-                print("Starting Key puzzle...")
-                # placeholder if a real KEY class is added later
-                passed = True
-
-        # If the puzzle was stored as the string "KEY"
-        elif currentPuzzle == "KEY":
-            print("Starting Key puzzle...")
-            # placeholder until KeyPuzzle is fully connected
-            passed = True
+        passed = currentPuzzle.enterRoom()
 
         # Update solved state and reward item
         if passed:
             self.__puzzles.setPassedPuzzles(self.__currentRoom)
-            itemName = "Item from Room " + str(self.__currentRoom + 1)
-            self.__itemsCollected.append(itemName)
-            print("Puzzle solved!")
-            print("You collected:", itemName)
+            print(" ==> Puzzle solved!")
+            print("")
+            INVENTORY.addRelic()
         else:
-            print("Puzzle failed or exited.")
+            print(" ==> Puzzle failed or exited.")
+            print("")
 
-        self.checkWin()
+        if self.checkWin():
+            self.__state = "WON"
 
     # -------------------------
     # Win / lose checks
     # -------------------------
     def checkWin(self):
-        if self.__puzzles.completedPuzzles():
-            self.__state = "WON"
+        if INVENTORY.checkWin() == 5:
+            return True
+        return False
 
     def getState(self):
         return self.__state
@@ -171,7 +159,7 @@ class GameState:
         print("Time remaining:", self.timeRemaining(), "seconds")
         print("Current room:", self.__currentRoom + 1, "/", self.__totalRooms)
         print("Solved:", self.roomSolved())
-        print("Items collected:", len(self.__itemsCollected))
+        print("Relics collected:", INVENTORY.checkWin())
         print("======================")
 
     # -------------------------
@@ -179,7 +167,11 @@ class GameState:
     # -------------------------
     def run(self):
         print("Game started!")
+        print(f"You stare down the hall... {self.__totalRooms} ahead of you")
+        print("You must find all the relics before time runs out so that you may escape")
+        print("")
         self.displayStatus()
+        time.sleep(2)
 
         while self.__state == "PLAYING":
             self.checkTimer()
@@ -189,18 +181,16 @@ class GameState:
 
             self.updateTimerLed()
 
-            userInput = self.__controls.getInput()
+            userInput = BUTTONS.getInput()
 
             if userInput in [0, 1, 2, 3]:
                 self.move(userInput)
                 self.displayStatus()
 
-            interactInput = self.__controls.getInteract()
-
-            if interactInput == 4:
+            elif userInput == 4:
                 self.interact()
                 self.displayStatus()
-            
+
             time.sleep(0.05)
 
         self.timerLedOff()
@@ -208,17 +198,12 @@ class GameState:
         if self.__state == "WON":
             print("\nYou escaped!")
             print("All 5 puzzles have been completed.")
-            print("Items collected:", self.__itemsCollected)
+            print("You collected all the relics and can make your great escape!")
 
         elif self.__state == "LOST":
             print("\nTime ran out! Game over.")
 
 
-
-# -------------------------
-# Run game
-# -------------------------
 if __name__ == "__main__":
-    game = GameState(60)   # 60 seconds = 1 minutes // for testing purposes
+    game = GameState(60)
     game.run()
-
