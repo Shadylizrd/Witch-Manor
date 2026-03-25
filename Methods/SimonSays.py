@@ -3,6 +3,7 @@ from gpiozero import LED, Button
 import time
 from GameState import *
 from ReadJson import *
+from MovementControls import *
 #takes a difficulty which is how many colours will be in the sequence
 
 COLOURS=["RED", "BLUE", "GREEN", "YELLOW"]
@@ -19,7 +20,7 @@ class SimonSays():
         self.__type= "SIMON"
         
         #put the difficulty in the Puzzles class
-        self._difficulty=difficulty
+        self.__difficulty=difficulty
         self.__currentDifficulty=0
         for i in range(difficulty):
             #makes a list of random colours the length of the difficulty
@@ -53,7 +54,7 @@ class SimonSays():
         self.showSequence()
         correct, toBreak=self.checkSequence()
         if correct:
-            if self._difficulty==self.__currentDifficulty:
+            if self.__difficulty==self.__currentDifficulty:
                 #returns true if the game has been won
                 return True
             else:
@@ -71,19 +72,13 @@ class SimonSays():
     def showSequence(self):
         for i in range(self.__currentDifficulty):
             if self.__answer[i]=="RED":
-                red.on()
+                MovementControls.led1()
             elif self.__answer[i]=="BLUE":
-                blue.on()
+                MovementControls.led2()
             elif self.__answer[i]=="GREEN":
-                green.on()
+                MovementControls.led3()
             elif self.__answer[i]=="YELLOW":
-                yellow.on()
-            time.sleep(0)
-            #makes sure all LEDs are off before showing the next LED
-            red.off()
-            green.off()
-            blue.off()
-            yellow.off()
+                MovementControls.led4()
 
 
     #checks the user input against the sequence returns False if it isn't the same
