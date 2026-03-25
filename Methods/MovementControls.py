@@ -38,6 +38,7 @@ class MovementControls:
                 time.sleep(0.2)
                 return 3
         
+<<<<<<< HEAD
             elif self.__interactButton.is_pressed:
                 time.sleep(0.2)
                 return 4
@@ -73,3 +74,8 @@ class MovementControls:
         self.__led6.on()
         time.sleep(2)
         self.__led6.off()
+=======
+        elif self.__interactButton.is_pressed:
+            time.sleep(0.2)
+            return 4
+>>>>>>> 2da7af446c6719818ec09d6eb40dd3b3bb22c84d

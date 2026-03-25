@@ -28,16 +28,7 @@ class Puzzles():
                 self.__puzzles.append([SimonSays(self.__simonDifficulty),index[i]])
                 self.__simonDifficulty+=1
         print(self.__puzzles)
-           
-    #calls the SimonSays and KeyPuzzle classes       
-#     def simonSays(self, index):
-#         #checks if they got it correct
-#         passed=self.__puzzles[index][0].sequence()
-#         return passed
-#        
-#     def key(self, index):
-#         passed=self.__puzzles[index][0].sequence()
-#         return passed
+
     
     #lists the types of puzzles to be put in the game
     def getPuzzles(self):
