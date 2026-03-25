@@ -1,6 +1,8 @@
+from gpiozero import LED
 import time
-from movement_controls import MovementControls
+from MovementControls import MovementControls
 from Puzzles import Puzzles
+
 
 
 class GameState:
@@ -22,6 +24,11 @@ class GameState:
         self.__timeLimit = time_limit
         self.__startTime = time.time()
 
+        # LED Flash Timer
+        self.__timerLed = LED(14)   # change pin if needed
+        self.__lastFlashTime = time.time()
+        self.__ledState = False
+
     # -------------------------
     # Timer methods
     # -------------------------
@@ -35,26 +42,60 @@ class GameState:
     def checkTimer(self):
         if self.timeRemaining() <= 0:
             self.__state = "LOST"
+    
+    def timerLedOn(self):
+        self.__timerLed.on()
+
+    def timerLedOff(self):
+        self.__timerLed.off()
+    
+
+    def updateTimerLed(self):
+        remaining = self.timeRemaining()
+
+        if remaining > 40:
+            flashRate = 1.0
+        elif remaining > 20:
+            flashRate = 0.5
+        elif remaining > 10:
+            flashRate = 0.25
+        else:
+            flashRate = 0.1
+
+        currentTime = time.time()
+
+        if currentTime - self.__lastFlashTime >= flashRate:
+            self.__lastFlashTime = currentTime
+
+            if self.__ledState:
+                self.timerLedOff()
+                self.__ledState = False
+            else:
+                self.timerLedOn()
+                self.__ledState = True
+
+
+
 
     # -------------------------
     # Room movement
     # -------------------------
-   def move(self, direction):
-    if direction == 0:  # UP
-        if self.__currentRoom < len(self.__rooms) - 1:
-            self.__currentRoom += 1
+    def move(self, direction):
+        if direction == 0:  # UP
+            if self.__currentRoom < len(self.__rooms) - 1:
+                self.__currentRoom += 1
 
-    elif direction == 1:  # DOWN
-        if self.__currentRoom > 0:
-            self.__currentRoom -= 1
+        elif direction == 1:  # DOWN
+            if self.__currentRoom > 0:
+                self.__currentRoom -= 1
 
-    elif direction == 2:  # LEFT
-        if self.__currentRoom > 0:
-            self.__currentRoom -= 1
+        elif direction == 2:  # LEFT
+            if self.__currentRoom > 0:
+                self.__currentRoom -= 1
 
-    elif direction == 3:  # RIGHT
-        if self.__currentRoom < len(self.__rooms) - 1:
-            self.__currentRoom += 1
+        elif direction == 3:  # RIGHT
+            if self.__currentRoom < len(self.__rooms) - 1:
+                self.__currentRoom += 1
 
     # -------------------------
     # Room / puzzle info
@@ -63,7 +104,7 @@ class GameState:
         return self.__currentRoom
 
     def getCurrentPuzzle(self):
-        return self.__rooms[self.__currentRoom]
+        return self.__rooms[self.__currentRoom][0]
 
     def roomSolved(self):
         return self.__puzzles.checkCompleted(self.__currentRoom)
@@ -138,6 +179,7 @@ class GameState:
     # -------------------------
     def run(self):
         print("Game started!")
+        self.displayStatus()
 
         while self.__state == "PLAYING":
             self.checkTimer()
@@ -145,17 +187,24 @@ class GameState:
             if self.__state != "PLAYING":
                 break
 
-            self.displayStatus()
+            self.updateTimerLed()
 
             userInput = self.__controls.getInput()
 
-            if userInput in ["UP", "DOWN", "LEFT", "RIGHT"]:
-                self.moveRoom(userInput)
+            if userInput in [0, 1, 2, 3]:
+                self.move(userInput)
+                self.displayStatus()
 
-            elif userInput == "INTERACT":
+            interactInput = self.__controls.getInteract()
+
+            if interactInput == 4:
                 self.interact()
+                self.displayStatus()
+            
+            time.sleep(0.05)
 
-        # End states
+        self.timerLedOff()
+
         if self.__state == "WON":
             print("\nYou escaped!")
             print("All 5 puzzles have been completed.")
@@ -165,9 +214,11 @@ class GameState:
             print("\nTime ran out! Game over.")
 
 
+
 # -------------------------
 # Run game
 # -------------------------
 if __name__ == "__main__":
     game = GameState(60)   # 60 seconds = 1 minutes // for testing purposes
     game.run()
+
