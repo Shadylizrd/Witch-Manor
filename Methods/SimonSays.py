@@ -41,30 +41,30 @@ class SimonSays():
         print(self.__solvedDescription)
         print("")
 
-    def enterRoom(self):
+    def enterRoom(self, gameState):
         print(self.__puzzleDescription)
         print("")
-        return self.sequence()
+        return self.sequence(gameState)
         
     #checks if the user has entered the entire sequence correctly
     #recoursively calls itself until the entire sequence is done
-    def sequence(self):
+    def sequence(self, gameState):
         self.__currentDifficulty+=1
         #runs the number of times that the difficulty is 1 to difficulty
         self.showSequence()
-        correct, toBreak=self.checkSequence()
+        correct, toBreak = self.checkSequence(gameState)
         if correct:
             if self.__difficulty==self.__currentDifficulty:
                 #returns true if the game has been won
                 return True
             else:
-                passed=self.sequence()
+                passed = self.sequence(gameState)
                 return passed
         elif toBreak==True:
             return False
         else:
             self.newAnswer()
-            passed=self.sequence()
+            passed = self.sequence(gameState)
             return passed
             
             
@@ -82,7 +82,7 @@ class SimonSays():
 
 
     #checks the user input against the sequence returns False if it isn't the same
-    def checkSequence(self):
+    def checkSequence(self, gameState):
         toBreak=False
         correct=True
         #loops for each LED in sequence
@@ -90,6 +90,10 @@ class SimonSays():
             pressed=False
             #will loop until a button is pressed
             while pressed==False:
+                
+                # Updates the main game timer and LED flashing while the puzzle is running
+                # This prevents the timer from freezing when inside a puzzle loop
+                gameState.tick() 
                 
                 #checks if each button is pressed then if that was the button that was supposed to be pressed
                 if BUTTONS.getInput()==0:
