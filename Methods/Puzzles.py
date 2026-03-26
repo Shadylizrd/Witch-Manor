@@ -14,9 +14,8 @@ class Puzzles():
             num=random.randint(0,4)
             if num not in index:
                 index.append(num)
-        print(index)
         
-        self.__puzzles=[[SimonSays(3),index[0]],[SimonSays(4),index[1]]]
+        self.__puzzles=[[SimonSays(3,index[0]),index[0]],[SimonSays(4,index[1]),index[1]]]
         self.__passedPuzzles=[False,False,False,False,False]
         self.__simonDifficulty=5
         for i in range(2,5):
@@ -25,7 +24,7 @@ class Puzzles():
                 self.__puzzles.append([KeyPuzzle(index[i], "puzzleRoom"),index[i]])
                 self.__puzzles.append([KeyPuzzle(index[i], "keyRoom"),index[i]])
             else:
-                self.__puzzles.append([SimonSays(self.__simonDifficulty),index[i]])
+                self.__puzzles.append([SimonSays(self.__simonDifficulty,index[i]),index[i]])
                 self.__simonDifficulty+=1
         print(self.__puzzles)
 
