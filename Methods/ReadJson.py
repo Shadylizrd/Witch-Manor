@@ -34,3 +34,6 @@ def readJson(json, mainKey):
 #keys = readJson('KeyDescriptions.json', 'trinkets')
 #print(keys['trinkets'][0]['trinket']) --> 'Cracked Key'
 #print(keys['trinkets'][1]['trinket']) --> 'Crystal Orb'
+
+#simon = readJson('SimonDescriptions.json', 'SimonRoomDescriptions')[0]
+#print(simon['puzzleDescription'])
