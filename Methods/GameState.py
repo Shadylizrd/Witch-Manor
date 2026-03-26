@@ -25,7 +25,7 @@ class GameState:
 
         # Timer
         self.__timeLimit = time_limit
-        self.__startTime = time.time()
+        self.__startTime = None
 
         # LED Flash Timer
         self.__timerLed = LED(14)
@@ -168,11 +168,11 @@ class GameState:
         print(f"You stare down the hall... {self.__totalRooms} rooms ahead of you")
         print("You must find all the relics before time runs out so that you may escape")
         print("")
+        self.__startTime = time.time()
         self.displayStatus()
+        time.sleep(2)
         print("")
         print("Press up/down to navigate and x to interact")
-    
-        time.sleep(2)
 
         while self.__state == "PLAYING":
             self.checkTimer()
