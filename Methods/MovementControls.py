@@ -67,6 +67,3 @@ class MovementControls:
         self.__led5.on()
         time.sleep(2)
         self.__led5.off()
-
-
-

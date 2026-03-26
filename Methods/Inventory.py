@@ -1,5 +1,3 @@
-from KeyPuzzle import *
-
 class Inventory():
     def __init__(self):
         self.__inventory = []
@@ -43,4 +41,3 @@ class Inventory():
 
     def isEmpty(self):
         return len(self.__inventory) == 0
-

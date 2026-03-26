@@ -1,8 +1,8 @@
-from MovementControls import MovementControls
 from GameState import *
 import time
-global BUTTONS
-BUTTONS = MovementControls()
+from Config import INVENTORY
+from Config import BUTTONS
+
 class MainMenu:
     def __init__(self):
 
@@ -35,7 +35,7 @@ class MainMenu:
 
             if action == 4:
                 return self.options[self.currentOption]
-            
+            print("")
             time.sleep(0.1)
     #display results       
     def endScreen(self, won):
@@ -64,7 +64,7 @@ def main():
 
     while True:
         choice = menu.runMenu()
-
+    
         if choice == "Start Game":
             won = menu.runGame()
             menu.endScreen(won)

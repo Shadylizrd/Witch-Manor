@@ -1,13 +1,9 @@
 from gpiozero import LED
 import time
 import random
-from MovementControls import *
 from Puzzles import *
-from Inventory import *
-
-global INVENTORY
-INVENTORY = Inventory()
-
+from Config import INVENTORY
+from Config import BUTTONS
 
 class GameState:
     def __init__(self, time_limit=300):
@@ -29,7 +25,7 @@ class GameState:
 
         # Timer
         self.__timeLimit = time_limit
-        self.__startTime = None 
+        self.__startTime = time.time()
 
         # LED Flash Timer
         self.__timerLed = LED(14)
@@ -172,11 +168,10 @@ class GameState:
         print(f"You stare down the hall... {self.__totalRooms} rooms ahead of you")
         print("You must find all the relics before time runs out so that you may escape")
         print("")
-        
-        # Start timer when game actually begins
-        self.__startTime = time.time()
-        
         self.displayStatus()
+        print("")
+        print("Press up/down to navigate and x to interact")
+    
         time.sleep(2)
 
         while self.__state == "PLAYING":

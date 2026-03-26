@@ -1,5 +1,6 @@
 from ReadJson import *
-from GameState import *
+from Config import INVENTORY
+from Config import BUTTONS
 
 class KeyPuzzle():
     def __init__(self, puzzleIndex, isPuzzleRoom):
@@ -53,7 +54,7 @@ class KeyPuzzle():
         else:  
             print(" ==> Select item:")
             print("")
-            INVENTORY.printInventory()
+            INVENTORY.print()
             while not pressed:  
                 # Keeps timer + LED updating during puzzle
                 gameState.tick()
@@ -93,11 +94,3 @@ class KeyPuzzle():
     def keyInteract(self):
         INVENTORY.add(self.__trinket)
         self.__solved = True
-        
-#  method or something
-# when you interact list  items
-# which item would you like to use?
-# select via num input
-# return 'trinket'
-
-# you need to pass in the buttons as paramaters or we get errors - clashing
