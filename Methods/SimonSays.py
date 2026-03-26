@@ -2,7 +2,6 @@ import random
 from gpiozero import LED, Button
 import time
 from ReadJson import *
-from Config import INVENTORY
 from Config import BUTTONS
 
 #takes a difficulty which is how many colours will be in the sequence

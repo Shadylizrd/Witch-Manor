@@ -1,6 +1,5 @@
 from GameState import *
 import time
-from Config import INVENTORY
 from Config import BUTTONS
 
 class MainMenu:
