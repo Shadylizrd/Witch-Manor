@@ -53,7 +53,7 @@ class KeyPuzzle():
         else:  
             print(" ==> Select item:")
             print("")
-            INVENTORY.print()
+            INVENTORY.printInventory()
             while not pressed:  
                 # Keeps timer + LED updating during puzzle
                 gameState.tick()
