@@ -51,6 +51,10 @@ class GameState:
     def checkTimer(self):
         if self.timeRemaining() <= 0:
             self.__state = "LOST"
+    
+    def tick(self):
+        self.checkTimer()
+        self.updateTimerLed()
 
     def timerLedOn(self):
         self.__timerLed.on()
@@ -123,7 +127,7 @@ class GameState:
             currentPuzzle.solvedDescription()
             return
 
-        passed = currentPuzzle.enterRoom()
+        passed = currentPuzzle.enterRoom(self)
 
         # Update solved state and reward item
         if passed:
