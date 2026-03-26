@@ -26,7 +26,6 @@ class Puzzles():
             else:
                 self.__puzzles.append([SimonSays(self.__simonDifficulty,index[i]),index[i]])
                 self.__simonDifficulty+=1
-        print(self.__puzzles)
 
     
     #lists the types of puzzles to be put in the game

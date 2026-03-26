@@ -23,7 +23,7 @@ class MainMenu:
     def runMenu(self):
         while True:
             self.displayMenu()
-            action = self.controls.getInput()
+            action = BUTTONS.getInput()
 
             if action== 0:
                 if self.currentOption > 0:
@@ -33,7 +33,7 @@ class MainMenu:
                 if self.currentOption< len(self.options) -1:
                     self.currentOption +=1
 
-            if self.controls.getInteract() == 4:
+            if action == 4:
                 return self.options[self.currentOption]
             
             time.sleep(0.1)
@@ -48,15 +48,15 @@ class MainMenu:
         print("Press INTERACT to return to the main menu.")
 
         while True:
-            if BUTTONS.getInteract() == 4:
+            if BUTTONS.getInput() == 4:
                 return
 
-#add game logic here or import from GameState
-def runGame():
-    print(" Game commencing !!")
-    time.sleep(2)
-    self.game.run()
-    return True
+    #add game logic here or import from GameState
+    def runGame(self):
+        print(" Game commencing !!")
+        time.sleep(2)
+        self.game.run()
+        return True
 
 #create menu object
 def main():
