@@ -72,13 +72,13 @@ class SimonSays():
     def showSequence(self):
         for i in range(self.__currentDifficulty):
             if self.__answer[i]=="RED":
-                MovementControls.led1()
+                BUTTONS.led1()
             elif self.__answer[i]=="BLUE":
-                MovementControls.led2()
+                BUTTONS.led2()
             elif self.__answer[i]=="GREEN":
-                MovementControls.led3()
+                BUTTONS.led3()
             elif self.__answer[i]=="YELLOW":
-                MovementControls.led4()
+                BUTTONS.led4()
 
 
     #checks the user input against the sequence returns False if it isn't the same
