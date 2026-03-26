@@ -5,9 +5,7 @@ from MovementControls import *
 from Puzzles import *
 from Inventory import *
 
-global BUTTONS
 global INVENTORY
-BUTTONS = MovementControls()
 INVENTORY = Inventory()
 
 
