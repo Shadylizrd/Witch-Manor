@@ -169,7 +169,7 @@ class GameState:
     # -------------------------
     def run(self):
         print("Game started!")
-        print(f"You stare down the hall... {self.__totalRooms} ahead of you")
+        print(f"You stare down the hall... {self.__totalRooms} rooms ahead of you")
         print("You must find all the relics before time runs out so that you may escape")
         print("")
         self.displayStatus()

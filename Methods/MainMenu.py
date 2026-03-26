@@ -66,7 +66,7 @@ def main():
         choice = menu.runMenu()
 
         if choice == "Start Game":
-            won = runGame()
+            won = menu.runGame()
             menu.endScreen(won)
 
         elif choice =="Quit":
