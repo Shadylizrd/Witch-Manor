@@ -31,22 +31,22 @@ class KeyPuzzle():
     def solvedDescription(self):
         print(self.__solvedDescription)
     
-    def enterRoom(self):
+    def enterRoom(self, gameState):
         # checks which room type and runs the appropriate room?
         # could remove this method entirely and run it between puzzleRoom and keyRoom
         if self.__isPuzzleRoom == "puzzleRoom":
-            self.puzzleRoom()
+            self.puzzleRoom(gameState)
         if self.__isPuzzleRoom == "keyRoom":
-            self.keyRoom()
+            self.keyRoom(gameState)
         return self.__solved
 
-    def puzzleRoom(self):
+    def puzzleRoom(self, gameState):
         print(self.__puzzleDescription)
         print("")
         if BUTTONS.getInput() == 4:
-            self.puzzleInteract()
+            self.puzzleInteract(gameState)
 
-    def puzzleInteract(self):
+    def puzzleInteract(self, gameState):
         pressed = False
         if INVENTORY.isEmpty():
             print(" ==> You don't have any items to use here")
@@ -55,6 +55,8 @@ class KeyPuzzle():
             print("")
             INVENTORY.print()
             while not pressed:  
+                # Keeps timer + LED updating during puzzle
+                gameState.tick()
                 # takes button input referring to place in 
                 item = BUTTONS.getInput()
                 trinket = INVENTORY.remove(item)
@@ -78,7 +80,7 @@ class KeyPuzzle():
             return False
                    
 
-    def keyRoom(self, ):
+    def keyRoom(self, gameState ):
         if not self.__solved:
             print(self.__trinketDescription)
             print(" ")
