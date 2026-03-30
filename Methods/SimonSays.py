@@ -65,6 +65,7 @@ class SimonSays():
         elif toBreak==True:
             return False
         else:
+            print("You got it wrong! Generating a new code")
             self.newAnswer()
             passed = self.sequence(gameState)
             return passed
