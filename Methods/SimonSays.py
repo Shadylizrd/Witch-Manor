@@ -51,6 +51,7 @@ class SimonSays():
     #recoursively calls itself until the entire sequence is done
     def sequence(self, gameState):
         self.__currentDifficulty+=1
+        print("\nSequence length ", self.__currentDifficulty, "/", self.__difficulty)
         #runs the number of times that the difficulty is 1 to difficulty
         self.showSequence()
         correct, toBreak = self.checkSequence(gameState)
@@ -71,6 +72,7 @@ class SimonSays():
             
     #flashes the sequence for the player to copy
     def showSequence(self):
+        print("The code is as follows")
         for i in range(self.__currentDifficulty):
             if self.__answer[i]=="RED":
                 BUTTONS.led1()
@@ -87,6 +89,7 @@ class SimonSays():
         toBreak=False
         correct=True
         #loops for each LED in sequence
+        print("Enter the code!")
         for i in range(self.__currentDifficulty):
             pressed=False
             #will loop until a button is pressed
