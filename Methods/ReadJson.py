@@ -18,7 +18,7 @@ def checkJson(file):
 def readJson(json, mainKey):
     try:
         dirname = os.path.dirname(__file__)
-        filename = os.path.join(dirname, 'GameData/', json)
+        filename = os.path.join(dirname, 'gameData/', json)
         with open(filename, 'r') as file:
             data = checkJson(file)[mainKey]
             # I store the data in the json file as an array so this'll make it easier to access data straight away

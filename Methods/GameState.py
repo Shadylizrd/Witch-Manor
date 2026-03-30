@@ -84,18 +84,19 @@ class GameState:
     # Room movement
     # -------------------------
     def move(self, direction):
+        print("")
         print(f"you walk away from room {self.__currentRoom}", end=" ")
 
         if direction == 0 or direction == 3:  # UP and RIGHT
             if self.__currentRoom < self.__totalRooms - 1:
                 self.__currentRoom += 1
-                print(f"you walk towards door {self.__currentRoom}")
+                print(f"you walk towards room {self.__currentRoom}")
                 print("")
 
         elif direction == 1 or direction == 2:  # DOWN and LEFT
             if self.__currentRoom > 0:
                 self.__currentRoom -= 1
-                print(f"you walk towards door {self.__currentRoom}")
+                print(f"you walk towards room {self.__currentRoom}")
                 print("")
 
     # -------------------------
@@ -126,9 +127,13 @@ class GameState:
         # Update solved state and reward item
         if passed:
             self.__puzzles.setPassedPuzzles(self.__currentRoom)
-            print(" ==> Puzzle solved!")
+            print(" ==> Room solved!")
             print("")
-            INVENTORY.addRelic()
+            if currentPuzzle.getType() == "KEY":
+                if currentPuzzle.puzzleRoom() == "puzzleRoom":
+                    INVENTORY.addRelic()
+            else:
+                INVENTORY.addRelic()
         else:
             print(" ==> Puzzle failed or exited.")
             print("")

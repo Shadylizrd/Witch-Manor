@@ -119,6 +119,7 @@ class SimonSays():
                         return False, toBreak
                     
                 elif BUTTONS.getInput()==4:
+                    pressed = True
                     return False, True
                     
                     

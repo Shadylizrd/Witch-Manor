@@ -23,8 +23,7 @@ class Puzzles():
             if random.randint(0,1)==0:
                 self.__puzzles.append([KeyPuzzle(index[i], "puzzleRoom"),index[i]])
                 self.__puzzles.append([KeyPuzzle(index[i], "keyRoom"),index[i]])
-                self.__passedPuzzles.append(False)
-                self.__passedPuzzles.append(False)
+                self.__passedPuzzles.append(False,False)
             else:
                 self.__puzzles.append([SimonSays(self.__simonDifficulty,index[i]),index[i]])
                 self.__simonDifficulty+=1
