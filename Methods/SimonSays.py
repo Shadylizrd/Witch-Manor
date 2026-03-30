@@ -104,22 +104,26 @@ class SimonSays():
                 #checks if each button is pressed then if that was the button that was supposed to be pressed
                 if BUTTONS.getInput()==0:
                     pressed=True
+                    BUTTONS.led1()
                     if self.__answer[i]!="RED":
                         #returns False if it was not the correct button
                         return False, toBreak
                     
                 elif BUTTONS.getInput()==1:
                     pressed=True
+                    BUTTONS.led2()
                     if self.__answer[i]!="BLUE":
                         return False, toBreak
                     
                 elif BUTTONS.getInput()==2:
                     pressed=True
+                    BUTTONS.led3()
                     if self.__answer[i]!="GREEN":
                         return False, toBreak
                     
                 elif BUTTONS.getInput()==3:
                     pressed=True
+                    BUTTONS.led4()
                     if self.__answer[i]!="YELLOW":
                         return False, toBreak
                     
