@@ -1,0 +1,49 @@
+{
+"trinkets" : [
+    {
+    "trinket":"Cracked Key",
+    "trinketDescription":"You enter a small room filled with books and relics of old. A Cracked Key lays strewn accross a long forgotten writing desk... \nmaybe this could be of use somewhere...?",
+    "takenDescription":"You enter the small room once more, still filled with books and relics of old. The writing desk lays empty now \nThere is no more you can do here",
+    "puzzleDescription":"You enter what looks to be bedroom, weathered by time. You spot a crooked chest of drawers lingering to the right of you, one of the drawers emits a strange energy. \nThe drawer is locked... maybe you could find a key somewhere?",
+    "solvedDescription":"You enter the old bedroom, the drawer hangs open. \nThere's no more you can gain here.",
+    "correctTrinket":"You use the cracked key. \nAfter some fumbling with the lock, the drawer slides open!",
+    "wrongTrinket":"no... that doesn't seem right..."
+    },
+    {
+    "trinket":"Crystal Orb",
+    "trinketDescription":"Crystal Orb room",
+    "takenDescription":"You took the Crystal Orb",
+    "puzzleDescription":"Crystal Orb puzzle",
+    "solvedDescription":"You solved this puzzle",
+    "correctTrinket":"correct",
+    "wrongTrinket":"wrong"
+    },
+    {
+    "trinket":"Witches Hat",
+    "trinketDescription":"Witches Hat room",
+    "takenDescription":"You took the Witches Hat",
+    "puzzleDescription":"Witches Hat puzzle",
+    "solvedDescription":"You solved this puzzle",
+    "correctTrinket":"correct",
+    "wrongTrinket":"wrong"
+    },
+    {
+    "trinket":"Salt Lamp",
+    "trinketDescription":"Salt Lamp room",
+    "takenDescription":"You took the Salt Lamp",
+    "puzzleDescription":"Salt Lamp puzzle",
+    "solvedDescription":"You solved this puzzle",
+    "correctTrinket":"correct",
+    "wrongTrinket":"wrong"
+    },
+    {
+    "trinket":"Eye of Newt",
+    "trinketDescription":"Eye of Newt room",
+    "takenDescription":"You took the Eye of Newt",
+    "puzzleDescription":"Eye of Newt puzzle",
+    "solvedDescription":"You solved this puzzle",
+    "correctTrinket":"correct",
+    "wrongTrinket":"wrong"
+    }
+]
+}
