@@ -16,16 +16,18 @@ class Puzzles():
                 index.append(num)
         
         self.__puzzles=[[SimonSays(3,index[0]),index[0]],[SimonSays(4,index[1]),index[1]]]
-        self.__passedPuzzles=[False,False,False,False,False]
+        self.__passedPuzzles=[False,False]
         self.__simonDifficulty=5
         for i in range(2,5):
             #makes a list of random colours the length of the difficulty
             if random.randint(0,1)==0:
                 self.__puzzles.append([KeyPuzzle(index[i], "puzzleRoom"),index[i]])
                 self.__puzzles.append([KeyPuzzle(index[i], "keyRoom"),index[i]])
+                self.__passedPuzzles.append(False,False)
             else:
                 self.__puzzles.append([SimonSays(self.__simonDifficulty,index[i]),index[i]])
                 self.__simonDifficulty+=1
+                self.__passedPuzzles.append(False)
 
     
     #lists the types of puzzles to be put in the game
@@ -41,9 +43,12 @@ class Puzzles():
         
     #checks if all the puzzles have been passed
     def completedPuzzles(self):
-        complete=True
+        completed=0
         for i in range(len(self.__puzzles)):
-            if self.__passedPuzzles[i]==False:
-                complete= False
-        return complete
+            if self.__passedPuzzles[i]==True:
+                completed+=1
+        if completed==5:
+            return True
+        else:
+            return False
 
