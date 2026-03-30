@@ -88,7 +88,7 @@ class KeyPuzzle():
             return False
                    
 
-    def keyRoom(self, gameState ):
+    def keyRoom(self, gameState):
         if not self.__solved:
             print(self.__trinketDescription)
             print(" ")
@@ -100,3 +100,4 @@ class KeyPuzzle():
         
     def keyInteract(self):
         INVENTORY.add(self.__trinket)
+        self.__solved = True

@@ -85,18 +85,18 @@ class GameState:
     # -------------------------
     def move(self, direction):
         print("")
-        print(f"you walk away from room {self.__currentRoom}", end=" ")
+        print(f"you walk away from room {self.__currentRoom + 1}", end=" ")
 
         if direction == 0 or direction == 3:  # UP and RIGHT
             if self.__currentRoom < self.__totalRooms - 1:
                 self.__currentRoom += 1
-                print(f"you walk towards room {self.__currentRoom}")
+                print(f"you walk towards room {self.__currentRoom + 1}")
                 print("")
 
         elif direction == 1 or direction == 2:  # DOWN and LEFT
             if self.__currentRoom > 0:
                 self.__currentRoom -= 1
-                print(f"you walk towards room {self.__currentRoom}")
+                print(f"you walk towards room {self.__currentRoom + 1}")
                 print("")
 
     # -------------------------
@@ -177,6 +177,8 @@ class GameState:
         print("")
         print("Press up/down to navigate and x to interact")
 
+        print("You face room 1...")
+
         while self.__state == "PLAYING":
             self.checkTimer()
 
@@ -211,3 +213,4 @@ class GameState:
 if __name__ == "__main__":
     game = GameState(60)
     game.run()
+                                  

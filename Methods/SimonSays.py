@@ -45,7 +45,8 @@ class SimonSays():
     def enterRoom(self, gameState):
         print(self.__puzzleDescription)
         print("")
-        return self.sequence(gameState)
+        if BUTTONS.getInput() == 4: 
+            return self.sequence(gameState)
         
     #checks if the user has entered the entire sequence correctly
     #recoursively calls itself until the entire sequence is done
