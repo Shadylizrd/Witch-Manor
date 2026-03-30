@@ -55,23 +55,27 @@ class KeyPuzzle():
         if INVENTORY.isEmpty():
             print(" ==> You don't have any items to use here")
         else:  
-            print(" ==> Select item:")
-            print("")
+            print(" ==> Select item:\n")
             INVENTORY.printInventory()
+            
             while not pressed:  
                 # Keeps timer + LED updating during puzzle
                 gameState.tick()
-                # takes button input referring to place in 
                 item = BUTTONS.getInput()
-                trinket = INVENTORY.remove(item)
-                # checks that puzzle solve was successdful and adds a relic
-                if self.giveTrinket(trinket):
-                    # breaks out of the loop
-                    pressed = True
 
-                # other way to break out of loop
+                # breaks out of the loop
                 if BUTTONS.getInput() == 4:
                     pressed = True
+                    break
+
+                trinket = INVENTORY.remove(item)
+                # checks that puzzle solve was successdful and adds a relic
+                if trinket is not None:
+                    if self.giveTrinket(trinket):
+                        # breaks out of the loop
+                        pressed = True
+
+               
 
     # call this method with the result of an  method as the 'trinket' parameter
     def giveTrinket(self, trinket):

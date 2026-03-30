@@ -145,9 +145,7 @@ class GameState:
     # Win / lose checks
     # -------------------------
     def checkWin(self):
-        if INVENTORY.checkWin() == 5:
-            return True
-        return False
+        return INVENTORY.checkWin() == 5
 
     def getState(self):
         return self.__state
