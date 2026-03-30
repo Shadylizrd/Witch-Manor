@@ -28,7 +28,10 @@ class KeyPuzzle():
     
     def getType(self):
         return self.__type 
-    
+
+    def puzzleRoom(self):
+        return self.__isPuzzleRoom
+            
     def solvedDescription(self):
         print(self.__solvedDescription)
     
@@ -93,4 +96,3 @@ class KeyPuzzle():
         
     def keyInteract(self):
         INVENTORY.add(self.__trinket)
-        self.__solved = True
