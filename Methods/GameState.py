@@ -187,7 +187,7 @@ class GameState:
 
             self.updateTimerLed()
 
-            userInput = BUTTONS.getInput()
+            userInput = BUTTONS.moveRoom()
 
             if userInput in [0, 1, 2, 3]:
                 self.move(userInput)

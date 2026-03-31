@@ -100,7 +100,7 @@ class SimonSays():
                 
                 # Updates the main game timer and LED flashing while the puzzle is running
                 # This prevents the timer from freezing when inside a puzzle loop
-                gameState.tick() 
+                gameState.tick()
                 
                 #checks if each button is pressed then if that was the button that was supposed to be pressed
                 if BUTTONS.getInput()==0:

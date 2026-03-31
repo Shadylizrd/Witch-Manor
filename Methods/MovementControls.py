@@ -19,7 +19,7 @@ class MovementControls:
 
 
     # continuously checks buttons and returns a string repressenting the action
-    def getInput(self):
+    def moveRoom(self):
          while True:   # Checks if the switches are pressed and prevent button press being detected multiple times
             if self.__upButton.is_pressed:
                 time.sleep(0.2) 
@@ -39,6 +39,24 @@ class MovementControls:
         
             elif self.__interactButton.is_pressed:
                 time.sleep(0.2)
+                return 4
+            
+            
+    def getInput(self):
+         while True:   # Checks if the switches are pressed and prevent button press being detected multiple times
+            if self.__upButton.is_pressed:
+                return 0
+        
+            elif self.__downButton.is_pressed:
+                return 1
+
+            elif self.__leftButton.is_pressed:
+                return 2
+
+            elif self.__rightButton.is_pressed:
+                return 3
+        
+            elif self.__interactButton.is_pressed:
                 return 4
         
         #LED methods
