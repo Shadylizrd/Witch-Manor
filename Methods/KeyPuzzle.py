@@ -29,7 +29,7 @@ class KeyPuzzle():
     def getType(self):
         return self.__type 
 
-    def puzzleRoom(self):
+    def getRoomType(self):
         return self.__isPuzzleRoom
             
     def solvedDescription(self):
@@ -39,12 +39,12 @@ class KeyPuzzle():
         # checks which room type and runs the appropriate room?
         # could remove this method entirely and run it between puzzleRoom and keyRoom
         if self.__isPuzzleRoom == "puzzleRoom":
-            self.puzzleRoom(gameState)
+            self.runPuzzleRoom(gameState)
         if self.__isPuzzleRoom == "keyRoom":
-            self.keyRoom(gameState)
+            self.runKeyRoom(gameState)
         return self.__solved
 
-    def puzzleRoom(self, gameState):
+    def runPuzzleRoom(self, gameState):
         print(self.__puzzleDescription)
         print("")
         if BUTTONS.getInput() == 4:
@@ -88,7 +88,7 @@ class KeyPuzzle():
             return False
                    
 
-    def keyRoom(self, gameState):
+    def runKeyRoom(self, gameState):
         if not self.__solved:
             print(self.__trinketDescription)
             print(" ")
