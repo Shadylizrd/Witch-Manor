@@ -40,7 +40,7 @@ class MainMenu:
     def endScreen(self, won):
         print("   GAME OVER   ")
         if won:
-            timeLeft = game.timeRemaining()
+            timeLeft = self.game.timeRemaining()
             print(f"You escaped! with {timeLeft} seconds left!")
         else:
             print("You failed to escape")

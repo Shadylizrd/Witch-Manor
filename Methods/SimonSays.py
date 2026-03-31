@@ -78,6 +78,7 @@ class SimonSays():
     #flashes the sequence for the player to copy
     def showSequence(self):
         print("The code is as follows")
+        time.sleep(1)
         for i in range(self.__currentDifficulty):
             if self.__answer[i]=="RED":
                 BUTTONS.led1()
@@ -87,7 +88,7 @@ class SimonSays():
                 BUTTONS.led3()
             elif self.__answer[i]=="YELLOW":
                 BUTTONS.led4()
-            time.sleep(1)
+            time.sleep(0.5)
 
 
     #checks the user input against the sequence returns False if it isn't the same
@@ -103,7 +104,7 @@ class SimonSays():
                 
                 # Updates the main game timer and LED flashing while the puzzle is running
                 # This prevents the timer from freezing when inside a puzzle loop
-                gameState.tick()
+                gameState.tick() 
                 
                 #checks if each button is pressed then if that was the button that was supposed to be pressed
                 if BUTTONS.getInput()==0:
@@ -137,4 +138,3 @@ class SimonSays():
                     
                     
         return correct, toBreak
-

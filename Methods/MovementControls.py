@@ -14,6 +14,8 @@ class MovementControls:
         self.__led1 = LED(21)
         self.__led2 = LED(20)
         self.__led3 = LED(16)
+        self.__led4 = LED(12)
+
 
     # continuously checks buttons and returns a string repressenting the action
     def moveRoom(self):

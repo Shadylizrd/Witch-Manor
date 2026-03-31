@@ -61,27 +61,27 @@ class KeyPuzzle():
             while not pressed:  
                 # Keeps timer + LED updating during puzzle
                 gameState.tick()
-                item = BUTTONS.moveRoom()
+                trinketNo = BUTTONS.moveRoom()
 
                 # breaks out of the loop
-                if BUTTONS.moveRoom() == 4:
+                if BUTTONS.getInput() == 4:
                     pressed = True
                     break
 
-                trinket = INVENTORY.peek(item)
+                trinket = INVENTORY.peek(trinketNo)
                 # checks that puzzle solve was successdful and adds a relic
                 if trinket is not None:
-                    if self.giveTrinket(trinket):
+                    if self.giveTrinket(trinket, trinketNo):
                         # breaks out of the loop
                         pressed = True
 
                
 
     # call this method with the result of an  method as the 'trinket' parameter
-    def giveTrinket(self, trinket):
+    def giveTrinket(self, trinket, trinketNo):
         if trinket == self.__trinket:
             self.__solved = True
-            INVENTORY.remove(trinket)
+            INVENTORY.remove(trinketNo)
             print(self.__correctTrinket)
             return True
         else:
