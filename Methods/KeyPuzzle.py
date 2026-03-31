@@ -64,7 +64,7 @@ class KeyPuzzle():
                 trinketNo = BUTTONS.moveRoom()
 
                 # breaks out of the loop
-                if BUTTONS.getInput() == 4:
+                if BUTTONS.moveRoom() == 4:
                     pressed = True
                     break
 
