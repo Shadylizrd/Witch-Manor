@@ -129,7 +129,7 @@ class GameState:
             self.__puzzles.setPassedPuzzles(self.__currentRoom)
             print(" ==> Room solved!")
             print("")
-            if currentPuzzle.getRoomType() == "puzzleRoom":
+            if currentPuzzle.getRoomType() != "keyPuzzle":
                 INVENTORY.addRelic()
         else:
             print(" ==> Puzzle failed or exited.")
@@ -199,12 +199,10 @@ class GameState:
         self.timerLedOff()
 
         if self.__state == "WON":
-            print("\nYou escaped!")
-            print("All 5 puzzles have been completed.")
-            print("You collected all the relics and can make your great escape!")
+            return True
 
         elif self.__state == "LOST":
-            print("\nTime ran out! Game over.")
+            return False
 
 
 if __name__ == "__main__":

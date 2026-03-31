@@ -7,7 +7,7 @@ class MainMenu:
 
         self.options = ["Start Game", "Quit"] #tweak if more options needed
         self.currentOption = 0 #implement buttons to choose options
-        self.game=GameState()
+        self.game=GameState(300)
 
     #display menu in terminal
     def displayMenu(self):
@@ -22,7 +22,7 @@ class MainMenu:
     def runMenu(self):
         while True:
             self.displayMenu()
-            action = BUTTONS.getInput()
+            action = BUTTONS.moveRoom()
 
             if action== 0:
                 if self.currentOption > 0:
@@ -40,22 +40,23 @@ class MainMenu:
     def endScreen(self, won):
         print("   GAME OVER   ")
         if won:
-            print("You escaped!")
+            timeLeft = game.timeRemaining()
+            print(f"You escaped! with {timeLeft} seconds left!")
         else:
             print("You failed to escape")
 
         print("Press INTERACT to return to the main menu.")
 
         while True:
-            if BUTTONS.getInput() == 4:
+            if BUTTONS.moveRoom() == 4:
                 return
 
     #add game logic here or import from GameState
     def runGame(self):
         print(" Game commencing !!")
         time.sleep(2)
-        self.game.run()
-        return True
+        return self.game.run()
+        
 
 #create menu object
 def main():

@@ -24,15 +24,19 @@ class Inventory():
         self.__inventory.append(object)
 
     def remove(self, item):
-        # exits out of the method
+        return self.__inventory.pop(item)
+   
+    
+    def peek(self, item):
         if self.isEmpty():
             return
         try:
-            popped = self.__inventory.pop(item)
+            return self.__inventory[item]
         except IndexError:
             print(" ==> you don't have an item stored there...")
             return
-        return popped
+
+        
 
     def printInventory(self):
         print(" -- Your Inventory -- ")

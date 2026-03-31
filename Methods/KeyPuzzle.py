@@ -68,7 +68,7 @@ class KeyPuzzle():
                     pressed = True
                     break
 
-                trinket = INVENTORY.remove(item)
+                trinket = INVENTORY.peek(item)
                 # checks that puzzle solve was successdful and adds a relic
                 if trinket is not None:
                     if self.giveTrinket(trinket):
@@ -81,6 +81,7 @@ class KeyPuzzle():
     def giveTrinket(self, trinket):
         if trinket == self.__trinket:
             self.__solved = True
+            INVENTORY.remove(trinket)
             print(self.__correctTrinket)
             return True
         else:
