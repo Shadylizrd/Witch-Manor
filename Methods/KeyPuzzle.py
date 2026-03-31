@@ -47,7 +47,7 @@ class KeyPuzzle():
     def runPuzzleRoom(self, gameState):
         print(self.__puzzleDescription)
         print("")
-        if BUTTONS.getInput() == 4:
+        if BUTTONS.moveRoom() == 4:
             self.puzzleInteract(gameState)
 
     def puzzleInteract(self, gameState):
@@ -61,10 +61,10 @@ class KeyPuzzle():
             while not pressed:  
                 # Keeps timer + LED updating during puzzle
                 gameState.tick()
-                item = BUTTONS.getInput()
+                item = BUTTONS.moveRoom()
 
                 # breaks out of the loop
-                if BUTTONS.getInput() == 4:
+                if BUTTONS.moveRoom() == 4:
                     pressed = True
                     break
 
@@ -92,7 +92,7 @@ class KeyPuzzle():
         if not self.__solved:
             print(self.__trinketDescription)
             print(" ")
-            if BUTTONS.getInput() == 4:
+            if BUTTONS.moveRoom() == 4:
                 self.keyInteract()
         else:
             print(self.__takenDescription)
