@@ -15,7 +15,6 @@ class MovementControls:
         self.__led2 = LED(20)
         self.__led3 = LED(16)
         self.__led4 = LED(12)
-        self.__led5 = LED(26)
 
 
     # continuously checks buttons and returns a string repressenting the action
@@ -63,25 +62,20 @@ class MovementControls:
 
     def led1(self):
         self.__led1.on()
-        time.sleep(2)
+        time.sleep(1)
         self.__led1.off()
 
     def led2(self):
         self.__led2.on()
-        time.sleep(2)
+        time.sleep(1)
         self.__led2.off()
 
     def led3(self):
         self.__led3.on()
-        time.sleep(2)
+        time.sleep(1)
         self.__led3.off()
 
     def led4(self):
         self.__led4.on()
-        time.sleep(2)
+        time.sleep(1)
         self.__led4.off()
-
-    def led5(self):
-        self.__led5.on()
-        time.sleep(2)
-        self.__led5.off()
