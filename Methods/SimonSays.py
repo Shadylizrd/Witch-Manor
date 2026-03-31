@@ -84,6 +84,7 @@ class SimonSays():
                 BUTTONS.led3()
             elif self.__answer[i]=="YELLOW":
                 BUTTONS.led4()
+            time.sleep(1)
 
 
     #checks the user input against the sequence returns False if it isn't the same
