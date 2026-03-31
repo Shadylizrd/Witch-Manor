@@ -31,6 +31,9 @@ class SimonSays():
     def getType(self):
         return self.__type
     
+    def getRoomType(self):
+        return "simonSays"
+    
     #regenerates sequence when the player gets it wrong
     def newAnswer(self):
         self.__answer=[]

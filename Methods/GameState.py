@@ -129,10 +129,7 @@ class GameState:
             self.__puzzles.setPassedPuzzles(self.__currentRoom)
             print(" ==> Room solved!")
             print("")
-            if currentPuzzle.getType() == "KEY":
-                if currentPuzzle.puzzleRoom() == "puzzleRoom":
-                    INVENTORY.addRelic()
-            else:
+            if currentPuzzle.getRoomType() == "puzzleRoom":
                 INVENTORY.addRelic()
         else:
             print(" ==> Puzzle failed or exited.")
