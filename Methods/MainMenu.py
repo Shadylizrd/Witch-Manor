@@ -45,8 +45,6 @@ class MainMenu:
         else:
             print("You failed to escape")
 
-        print("Press INTERACT to return to the main menu.")
-
         while True:
             if BUTTONS.moveRoom() == 4:
                 return
@@ -68,6 +66,7 @@ def main():
         if choice == "Start Game":
             won = menu.runGame()
             menu.endScreen(won)
+            break
 
         elif choice =="Quit":
             print(" Quitting game.")

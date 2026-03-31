@@ -12,7 +12,6 @@ class Inventory():
         else:
             print(" ==> you now have 1 relic!")
 
-
     # once this equals 5 then you should win the game
     # run this method each time you pick up a relic
     def checkWin(self):

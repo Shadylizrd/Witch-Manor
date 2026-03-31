@@ -168,13 +168,11 @@ class GameState:
         print(f"You stare down the hall... {self.__totalRooms} rooms ahead of you")
         print("You must find all the relics before time runs out so that you may escape")
         print("")
-        self.__startTime = time.time()
-        self.displayStatus()
-        time.sleep(2)
-        print("")
         print("Press up/down to navigate and x to interact")
 
-        print("You face room 1...")
+        self.__startTime = time.time()
+        self.displayStatus()
+        print("")
 
         while self.__state == "PLAYING":
             self.checkTimer()
