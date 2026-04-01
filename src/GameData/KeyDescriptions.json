@@ -6,44 +6,44 @@
     "takenDescription":"You enter the small room once more, still filled with books and relics of old. The writing desk lays empty now \nThere is no more you can do here",
     "puzzleDescription":"You enter what looks to be bedroom, weathered by time. You spot a crooked chest of drawers lingering to the right of you, one of the drawers emits a strange energy. \nThe drawer is locked... maybe you could find a key somewhere?",
     "solvedDescription":"You enter the old bedroom, the drawer hangs open. \nThere's no more you can gain here.",
-    "correctTrinket":"You use the cracked key. \nAfter some fumbling with the lock, the drawer slides open!",
+    "correctTrinket":"You use the Cracked Key. \nAfter some fumbling with the lock, the drawer slides open!",
     "wrongTrinket":"no... that doesn't seem right..."
     },
     {
     "trinket":"Crystal Orb",
-    "trinketDescription":"Crystal Orb room",
-    "takenDescription":"You took the Crystal Orb",
-    "puzzleDescription":"Crystal Orb puzzle",
-    "solvedDescription":"You solved this puzzle",
-    "correctTrinket":"correct",
-    "wrongTrinket":"wrong"
+    "trinketDescription":"You enter the room, it looks to be some sort of glass workshop\n most of the items here are broken, however, one remains perfectly complete. \nmaybe you could take it as a souvenir?",
+    "takenDescription":"The glass workshop remains shiny and broken.\n There is no more to be gained here",
+    "puzzleDescription":"You walk into a large dining hall with a tall statue standing at the end. \nThe statue's eye gleams with determination, its other eye seems strikingly empty... \nmaybe you could find something to complete the statue?",
+    "solvedDescription":"The statue's eyes shine with glee\n your work here is done!",
+    "correctTrinket":"The Crystal Orb slots right in, the statue happily reveals something from beneath his cloak",
+    "wrongTrinket":"no... that doesn't seem right..."
     },
     {
-    "trinket":"Witches Hat",
-    "trinketDescription":"Witches Hat room",
-    "takenDescription":"You took the Witches Hat",
-    "puzzleDescription":"Witches Hat puzzle",
-    "solvedDescription":"You solved this puzzle",
-    "correctTrinket":"correct",
-    "wrongTrinket":"wrong"
+    "trinket":"Ball of Yarn",
+    "trinketDescription":"You walk into a room covered in tapestries and unfinished knitting projects, on your left you spy an untouched Ball of Yarn.\n Maybe this could help you later",
+    "takenDescription":"The room is still adorned with beautiful tapestries, not much more for you to do here though.",
+    "puzzleDescription":"You walk into a dark little room, there seems to be something making noise in the corner, though you can't qutie tell what\n Maybe you can give something to this creature and it could help you..?",
+    "solvedDescription":"The creature sounds peaceful now.\n Better not disturb it..",
+    "correctTrinket":"You place the Ball of Yarn infront of the darkness and small paws reach out to grab it. \nShortly afterwards a little relic rolls out from the darkness.",
+    "wrongTrinket":"You place the trinket infront of the darknes and wait.\n Nothing much seems to happen, you take back the trinket."
     },
     {
-    "trinket":"Salt Lamp",
-    "trinketDescription":"Salt Lamp room",
-    "takenDescription":"You took the Salt Lamp",
-    "puzzleDescription":"Salt Lamp puzzle",
-    "solvedDescription":"You solved this puzzle",
-    "correctTrinket":"correct",
-    "wrongTrinket":"wrong"
+    "trinket":"Oil Lantern",
+    "trinketDescription":"You walk into a cramped supply closet, empty jars and other junk fills every crevice, a small Salt Lamp pokes out from under some old newspapers. \nMaybe this lantern can light the path to escape",
+    "takenDescription":"The supply cloest is just as cramped as before, nothing else here can help you",
+    "puzzleDescription":"You open the door and complete darkness surrounds you.\n Maybe if you could find something to light up the room you could explore further",
+    "solvedDescription":"The room isn't so dark now, there doesn't seem to be much more you can gain here",
+    "correctTrinket":"You bring out the Oil Lantern and the room illuminates before you, \na small shiny relic sits upon one of the previously hidden shelves.",
+    "wrongTrinket":"You try to light up the room but it doesn't seem to have much effect"
     },
     {
     "trinket":"Eye of Newt",
-    "trinketDescription":"Eye of Newt room",
-    "takenDescription":"You took the Eye of Newt",
-    "puzzleDescription":"Eye of Newt puzzle",
-    "solvedDescription":"You solved this puzzle",
-    "correctTrinket":"correct",
-    "wrongTrinket":"wrong"
+    "trinketDescription":"The smell of the room hits you before anything, herbs and ingredients hang from every corner. \nUpon closer inspection most of these ingredients have gone rank, the only item remaining is a bottle labled 'eye of newt'\n maybe this could help you somewhere? ",
+    "takenDescription":"The room still smells putrid - there is DEFINITLEY no reason you should need to come back",
+    "puzzleDescription":"As you enter the room a black cat looks you up and down, it seems to be brewing something... \nThe cat seems to be sat stubbornly on a strange looking box. \nMaybe if you help the cat finish it's potion you can see what's in the box?",
+    "solvedDescription":"The cat sits happily infront of the finished brew, liking its paws in pride",
+    "correctTrinket":"The cat gives the Eye of Newt a long whiff before jumping off the box and snatching it from your hand. Before you know it the brew starts glowing mutli-coloured\n This is your chance to check the box!",
+    "wrongTrinket":"The cat bats your hand away in a rather unpleased manner\n this doesn't seem to be what he's looking for"
     }
 ]
 }

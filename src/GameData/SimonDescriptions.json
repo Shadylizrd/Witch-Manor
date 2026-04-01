@@ -2,23 +2,23 @@
 "SimonRoomDescriptions":[
     {
     "puzzleDescription":"You enter a large room with fabric sprawled across every surface, you spy a safe tucked under countless layers of velvet. Do you try and crack the code?",
-    "solvedDescription":"1"
+    "solvedDescription":"The safe now hangs wide open, there is nothing left to be gained from this room"
     },
     {
-    "puzzleDescription":"2",
-    "solvedDescription":"2"
+    "puzzleDescription":"You step into what appears to be an old music room, dusty sheet music litters the floor. A grand pipe organ looms at the far wall, its keys glowing faintly in a peculiar sequence... perhaps if you could repeat the melody, something might stir.",
+    "solvedDescription":"You return to the music room, the organ sits dark and silent now, its keys no longer glowing. There is nothing left to play here."
     },
     {
-    "puzzleDescription":"3",
-    "solvedDescription":"3"
+    "puzzleDescription":"You find yourself in a cluttered astronomer's study, star charts and celestial maps pinned to every wall. A brass orrery sits at the centre of the room, its planets frozen mid-orbit... maybe if you could align them just right, something would unlock.",
+    "solvedDescription":"You wander back into the astronomer's study, the orrery turns slowly in its completed alignment. The stars have no more secrets to give you."
     },
     {
-    "puzzleDescription":"4",
-    "solvedDescription":"4"
+    "puzzleDescription":"You push open a heavy door into what looks like an old apothecary. Rows of coloured vials line the shelves, most unlabelled. A set of scales sits at the counter, tilted and waiting... something tells you the right combination of vials might tip the balance.",
+    "solvedDescription":"You step back into the apothecary, the scales sit level and undisturbed. There is nothing left among these shelves that can help you."
     },
     {
-    "puzzleDescription":"5",
-    "solvedDescription":"5"
+    "puzzleDescription":"You creep into a dimly lit gallery, paintings of stern-faced figures watching your every move. One portrait in particular catches your eye — its subject clutches a sequence of symbols that seem to mirror the strange panel on the far wall... could this be a clue?",
+    "solvedDescription":"You re-enter the gallery, the figures in the paintings seem somehow less stern now. The panel on the wall sits open and empty. There is no more the gallery wishes to share."
     }
 ]
 }
