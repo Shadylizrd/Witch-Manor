@@ -6,7 +6,7 @@ from Config import INVENTORY
 from Config import BUTTONS
 
 class GameState:
-    def __init__(self, time_limit=300):
+    def __init__(self, time_limit):
         # Main game state
         self.__state = "PLAYING"
         self.__puzzles = Puzzles()
@@ -202,8 +202,4 @@ class GameState:
         elif self.__state == "LOST":
             return False
 
-
-if __name__ == "__main__":
-    game = GameState(60)
-    game.run()
                                   
