@@ -1,4 +1,4 @@
-{
+    {
 "trinkets" : [
     {
     "trinket":"Cracked Key",
@@ -22,14 +22,14 @@
     "trinket":"Ball of Yarn",
     "trinketDescription":"You walk into a room covered in tapestries and unfinished knitting projects, on your left you spy an untouched Ball of Yarn.\n Maybe this could help you later",
     "takenDescription":"The room is still adorned with beautiful tapestries, not much more for you to do here though.",
-    "puzzleDescription":"You walk into a dark little room, there seems to be something making noise in the corner, though you can't qutie tell what\n Maybe you can give something to this creature and it could help you..?",
+    "puzzleDescription":"You walk into a dark little room, there seems to be something making noise in the corner, though you can't quite tell what\n Maybe you can give something to this creature and it could help you..?",
     "solvedDescription":"The creature sounds peaceful now.\n Better not disturb it..",
     "correctTrinket":"You place the Ball of Yarn infront of the darkness and small paws reach out to grab it. \nShortly afterwards a little relic rolls out from the darkness.",
     "wrongTrinket":"You place the trinket infront of the darknes and wait.\n Nothing much seems to happen, you take back the trinket."
     },
     {
     "trinket":"Oil Lantern",
-    "trinketDescription":"You walk into a cramped supply closet, empty jars and other junk fills every crevice, a small Salt Lamp pokes out from under some old newspapers. \nMaybe this lantern can light the path to escape",
+    "trinketDescription":"You walk into a cramped supply closet, empty jars and other junk fills every crevice, a small oil Lamp pokes out from under some old newspapers. \nMaybe this lantern can light the path to escape",
     "takenDescription":"The supply cloest is just as cramped as before, nothing else here can help you",
     "puzzleDescription":"You open the door and complete darkness surrounds you.\n Maybe if you could find something to light up the room you could explore further",
     "solvedDescription":"The room isn't so dark now, there doesn't seem to be much more you can gain here",
