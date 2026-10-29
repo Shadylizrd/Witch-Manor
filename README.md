@@ -1,6 +1,18 @@
 # Witch Manor🔮🐈‍⬛
 An escape room game built on a Raspberry Pi, utilizing buttons and LEDs
 
+This project is an escape room game that runs on a Raspberry Pi 5 and is controlled by five
+GPIO buttons. We also used four LEDs to display puzzle outputs and one LED to represent
+the in-game timer. The rest of the game's outputs are printed to the terminal, but all
+interaction is handled via the GPIO buttons.
+
+The player's objective is to solve all generated puzzles within the time limit and collect five
+relics to win. The game offers two puzzle types: Simon Says and "lock and key." In Simon
+Says, the LEDs light up in a sequence, adding one more step to the sequence each time
+the pattern is repeated back correctly until the maximum complexity is reached. For the
+"lock and key" puzzles, the player must collect a trinket from one room and bring it to the
+puzzle's matching room
+
 ### Features
 - Randomised manor: the room order and the puzzles are shuffled every playthrough - like a roguelike!
 - Simon Says puzzles: watch a sequence flash on the red/blue/green/yellow LEDs, then repeat it on the buttons. Each sequence longer than the last.
