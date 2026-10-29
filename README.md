@@ -44,6 +44,10 @@ src/
     ├── SimonDescriptions.json  # Text for Simon Says rooms
     └── KeyDescriptions.json    # Trinkets and text for key rooms
 ```
+### Raspberry Pi Hardware!
+<img width="4000" height="3000" alt="20260305_115140" src="https://github.com/user-attachments/assets/737ce590-8bf3-472c-92b0-f23a1509e324" style="width:50%; height:auto; object-position:right;"/>
+<img width="4000" height="3000" alt="20260305_115151" src="https://github.com/user-attachments/assets/3d1711c9-92da-4265-8372-9f7f68fa9280" 
+style="width:50%; height:auto; object-position:right;"/>
 
 ### Team
 This was a group project. Contributors:
